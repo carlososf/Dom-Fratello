@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Fratello - Restaurante e Pizzaria Italiana</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de cores e fontes personalizadas para Tailwind */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif; /* Fonte principal para o corpo do texto */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Fonte mais elegante para títulos */
+        }
+        /* Novas cores baseadas na imagem fornecida */
+        .text-dom-dark-blue { color: #2C3A4F; } /* Novo tom de azul escuro principal */
+        .bg-dom-dark-blue { background-color: #2C3A4F; }
+        .text-dom-dourado { color: #DAA520; } /* Dourado */
+        .bg-dom-dourado { background-color: #DAA520; }
+        .text-dom-claro { color: #F5F5DC; } /* Branco suave */
+        .bg-dom-claro { background-color: #F5F5DC; }
+        .border-dom-dourado { border-color: #DAA520; }
+
+        /* Animações leves */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scale-in {
+            animation: scaleIn 1s ease-out;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Estilo para carrossel (simulado com overflow-x) */
+        .carousel-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: auto;
+            display: flex;
+        }
+        .carousel-item {
+            flex: 0 0 100%; /* Cada item ocupa 100% da largura do contêiner */
+            scroll-snap-align: start;
+            padding: 1rem;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 50%; /* Em tablets, dois itens por vez */
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.333%; /* Em desktops, três itens por vez */
+            }
+        }
+    </style>
+</head>
+<body class="bg-dom-claro text-gray-800">
+
+    <!-- Cabeçalho -->
+    <header class="bg-dom-dark-blue text-dom-claro py-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <!-- Espaço para o Logotipo -->
+            <img src="dom fratello.png" alt="Dom Fratello Logo" class="h-12 mb-2 md:mb-0">
+
+            <!-- Informações de Contato e Botões -->
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    Rua Casuarinas, 164 - Jardim Floresta, Vargem Grande Paulista, SP - 06738-308
+                </span>
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 004.978 4.978l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    (11) 4158-1318
+                </span>
+                <a href="https://web.whatsapp.com/send?phone=5511956981231&text=" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                    <!-- Ícone do WhatsApp em PNG -->
+                    <img src="whatsapp.png" alt="WhatsApp Icon" class="inline-block w-5 h-5 mr-2">
+                    WhatsApp
+                </a>
+                <a href="Cardapio-2025-02-novo.pdf" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                    Ver Cardápio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('fundo dom fratello.png');">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="z-10 text-dom-claro p-8 rounded-lg fade-in">
+                <h2 class="text-5xl md:text-7xl font-bold mb-4 leading-tight scale-in">Um verdadeiro sentimento Gastronômico</h2>
+                <p class="text-lg md:text-xl mb-8">Tradição, paixão e ingredientes frescos para uma experiência inesquecível.</p>
+                <a href="#reservar" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Fazer Reserva
+                </a>
+            </div>
+        </section>
+
+        <!-- Galeria de Fotos -->
+        <section class="py-16 bg-dom-claro fade-in">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-dom-dark-blue mb-12 text-center">Nossa Galeria</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="ambiente acolhedor.jpg" alt="Ambiente Acolhedor Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">Ambiente Acolhedor</h3>
+                            <p class="text-gray-700 text-sm">Desfrute de um espaço que une elegância e conforto.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="pizza forno.jpg" alt="Pizza Margherita Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">Pizza Margherita</h3>
+                            <p class="text-gray-700 text-sm">O clássico sabor italiano com ingredientes frescos.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="massa.jpg" alt="Massa Fresca Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">Massa Fresca</h3>
+                            <p class="text-gray-700 text-sm">Preparo artesanal que você sente em cada garfada.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="vinho.jpg" alt="Vinhos Selecionados Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">Vinhos Selecionados</h3>
+                            <p class="text-gray-700 text-sm">Acompanhamento perfeito para sua refeição.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="mezanino.jpg" alt="Nosso Mezanino Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">Nosso Mezanino</h3>
+                            <p class="text-gray-700 text-sm">Ideal para celebrar momentos especiais.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="brownie.png" alt="Brownie Dom Fratello" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white text-dom-dark-blue">
+                            <h3 class="font-bold text-xl mb-2">BROWNIE</h3>
+                            <p class="text-gray-700 text-sm">Bolo de chocolate com sorvete de creme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Destaques do Cardápio -->
+        <section class="py-16 bg-gray-100 fade-in">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-dom-dark-blue mb-12">Nossos Destaques</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Destaque 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="brie.jpg" alt="Pizza de Brie com Geleia de Pimenta" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-2xl text-dom-dark-blue mb-2">Pizza de Brie com geleia de pimenta</h3>
+                            <p class="text-gray-700 leading-relaxed">Molho de tomate fresco, mussarela, queijo brie, geleia de pimenta, azeitonas e orégano.</p>
+                        </div>
+                    </div>
+                    <!-- Destaque 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="burrata.png" alt="Burrata ao Pesto" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-2xl text-dom-dark-blue mb-2">BURRATA AO PESTO</h3>
+                            <p class="text-gray-700 leading-relaxed">Burrata, tomatinho cereja, pesto de azeitona e manjericão. Acompanha crostines.</p>
+                        </div>
+                    </div>
+                    <!-- Destaque 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="parmegiana.jpg" alt="Filé Parmegiana" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-2xl text-dom-dark-blue mb-2">FILÉ PARMEGIANA</h3>
+                            <p class="text-gray-700 leading-relaxed">Filé mignon, molho artesanal da casa, mussarela, finalizado no forno à lenha.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos de Clientes (Carrossel Simulado) -->
+        <section class="py-16 bg-dom-dark-blue text-dom-claro fade-in">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-dom-dourado mb-12">O que dizem nossos clientes</h2>
+                <div class="carousel-container rounded-lg shadow-lg">
+                    <!-- Depoimento 1 -->
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-md mx-4 md:mx-2 flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <blockquote class="text-gray-800 text-center italic">
+                            <p class="mb-4">"Ambiente muito agradável, pizza espetacular, nunca tinha apreciado uma pizza com gosto e qualidade nota 10. Atendimento ótimo, recomendo e com certeza iremos voltar."</p>
+                            <footer class="font-bold text-dom-dark-blue">- Monica C.</footer>
+                        </blockquote>
+                    </div>
+                    <!-- Depoimento 2 -->
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-md mx-4 md:mx-2 flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <blockquote class="text-gray-800 text-center italic">
+                            <p class="mb-4">"Super recomendo, frequento a anos com minha família! É um ambiente aconchegante, o atendimento de todos os garçons é excelente, as pizzas são uma delícia e a comida é muito saborosa e bem servida."</p>
+                            <footer class="font-bold text-dom-dark-blue">- Gabrielly M.</footer>
+                        </blockquote>
+                    </div>
+                    <!-- Depoimento 3 -->
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-md mx-4 md:mx-2 flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <blockquote class="text-gray-800 text-center italic">
+                            <p class="mb-4">"Lugar familiar e super agradável, a atenção dos garçons são incríveis, a comida estava maravilhosa, gostei bastante da variedade além das pizzas tem pratos executivos, sopas e porções. Ainda ganhei uma sobremesa no meu aniversário."</p>
+                            <footer class="font-bold text-dom-dark-blue">- Gloria R.</footer>
+                        </blockquote>
+                    </div>
+                    <!-- Depoimento 4 -->
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-md mx-4 md:mx-2 flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <blockquote class="text-gray-800 text-center italic">
+                            <p class="mb-4">"Ótima pizza, atendimento nota 1.000. Super recomendo conhecer!"</p>
+                            <footer class="font-bold text-dom-dark-blue">- Andre M.</footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <p class="text-center text-sm mt-4">Deslize para ver mais depoimentos</p>
+            </div>
+        </section>
+
+        <!-- Seção Sugestão de Item do Cardápio -->
+        <section class="py-16 bg-gray-100 fade-in">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-dom-dark-blue mb-8">Não sabe o que pedir? 🤔</h2>
+                <p class="text-lg text-gray-700 mb-6">Deixe-nos sugerir um item delicioso do nosso cardápio para você!</p>
+                <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <button id="suggestMenuItemBtn" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
+                        </svg>
+                        Sugira um Item do Cardápio
+                    </button>
+                    <div id="loadingMenuItem" class="mt-4 text-dom-dark-blue font-semibold hidden">
+                        <div class="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-dom-dourado border-r-dom-dourado border-b-transparent rounded-full"></div>
+                        Buscando sugestão...
+                    </div>
+                    <div id="menuItemRecommendation" class="mt-6 p-4 bg-dom-claro border border-dom-dourado rounded-lg text-dom-dark-blue text-left">
+                        <p class="text-gray-600">Sua sugestão de item do cardápio aparecerá aqui.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre o Restaurante -->
+        <section class="py-16 bg-dom-claro fade-in">
+            <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h2 class="text-4xl font-bold text-dom-dark-blue mb-6">Sobre o Dom Fratello</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        A Dom Fratello Pizzaria tem mais de 24 anos, começamos nossas atividades exatamente no dia 27 de julho lá do ano 2000. Como uma criança, nascemos pequeno, atendendo principalmente para o delivery, pois não tínhamos um espaço muito grande, podemos dizer que a Dom Fratello começou em uma porta.
+Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidade, sempre!
+
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Em 2010, a Dom Fratello, mudou de endereço, em uma sede própria, construída pensando para oferecer mais comodidade  e com uma estrutura que pudesse oferecer além das nossas tradicionais pizzas uma cozinha mais diversificada a todos os nossos clientes.
+
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Com um ambiente amplo e familiar a Dom Fratello oferece: pizzas, entradas, pratos a la carte, massas, caldos, porções e drinks. Como falamos, um pouco de tudo em um só lugar.
+                  
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Nesse tempo, crescemos, aprendemos muitas coisas, mas não perdemos nossa essência: oferecer ótimos produtos e um ótimo atendimento
+                  
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        A Dom Fratello é uma empresa familiar é nossa casa.
+                        A todos os nossos amigos e clientes, nossa gratidão!                    
+                    </p>
+                </div>
+                <div class="lg:w-1/2 rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img src="souzanamoto.jpg" alt="Interior do Restaurante Dom Fratello" class="w-full h-96 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Botões de Chamada para Ação -->
+        <section class="py-16 bg-dom-dark-blue text-dom-claro text-center fade-in">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-dom-dourado mb-8">Planeje Sua Visita ou Peça Online!</h2>
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <a href="https://web.whatsapp.com/send?phone=5511956981231&text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva." target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+                        Fazer Reserva via WhatsApp
+                    </a>
+                    <a href="https://pedido.anota.ai/loja/dom-fratello-pizza-cia?f=msa" target="_blank" class="bg-white hover:bg-gray-200 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+                        Pedir Online (via AnotaAi)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-dom-dark-blue text-dom-claro py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Endereço e Mapa -->
+            <div>
+                <h3 class="text-xl font-bold text-dom-dourado mb-4">Onde Estamos</h3>
+                <p class="mb-2">Rua Casuarinas, 164 - Jardim Floresta</p>
+                <p class="mb-2">Vargem Grande Paulista, São Paulo - 06738-308</p>
+                <a href="https://maps.app.goo.gl/6FL26uqpw5q4enpY7" target="_blank" class="text-dom-dourado hover:underline flex items-center">
+                    Ver no Google Maps
+                    <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10H4a1 1 0 110-2h10.586l-4.293-4.293a1 1 0 111.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Horário de Funcionamento -->
+            <div>
+                <h3 class="text-xl font-bold text-dom-dourado mb-4">Horário de Funcionamento</h3>
+                <ul class="space-y-1">
+                    <li>Segunda a Quinta e Domingo: 18h00 - 23h00</li>
+                    <li>Sexta e Sábado: 18h00 - 00h00</li>
+                </ul>
+            </div>
+
+            <!-- Redes Sociais e Outros Links -->
+            <div>
+                <h3 class="text-xl font-bold text-dom-dourado mb-4">Conecte-se</h3>
+                <div class="flex space-x-4 mb-4">
+                    <a href="https://www.instagram.com/domfratello/" target="_blank" class="hover:text-dom-dourado transform hover:scale-125 transition duration-300 ease-in-out">
+                        <!-- Ícone do Instagram em PNG -->
+                        <img src="instagram.png" alt="Instagram" class="w-8 h-8">
+                    </a>
+                    <a href="https://www.facebook.com/Domfratello/?locale=pt_BR" target="_blank" class="hover:text-dom-dourado transform hover:scale-125 transition duration-300 ease-in-out">
+                        <!-- Ícone do Facebook em PNG -->
+                        <img src="facebook.png" alt="Facebook" class="w-8 h-8">
+                    </a>
+                </div>
+                <a href="#politica-privacidade" class="text-dom-dourado hover:underline text-sm">Política de Privacidade</a>
+            </div>
+        </div>
+        <div class="text-center text-sm text-dom-claro mt-8">
+            &copy; 2025 Dom Fratello. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simulação de carrossel para depoimentos (para melhor visualização em navegadores sem suporte total a scroll-snap)
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carouselContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carouselContainer.classList.add('active');
+                startX = e.pageX - carouselContainer.offsetLeft;
+                scrollLeft = carouselContainer.scrollLeft;
+            });
+            carouselContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+                carouselContainer.classList.remove('active');
+            });
+            carouselContainer.addEventListener('mouseup', () => {
+                isDown = false;
+                carouselContainer.classList.remove('active');
+            });
+            carouselContainer.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carouselContainer.offsetLeft;
+                const walk = (x - startX) * 3; //scroll-fast
+                carouselContainer.scrollLeft = scrollLeft - walk;
+            });
+
+            // Touch events for mobile
+            carouselContainer.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+                scrollLeft = carouselContainer.scrollLeft;
+            });
+            carouselContainer.addEventListener('touchend', () => {
+                isDown = false;
+            });
+            carouselContainer.addEventListener('touchmove', (e) => {
+                if(!isDown) return;
+                const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+                const walk = (x - startX) * 3;
+                carouselContainer.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Função para extrair itens do cardápio do texto do PDF e categorizá-los
+        function parseMenuFromText(text) {
+            const menuItems = [];
+            const lines = text.split('\n');
+            // Mapa para categorizar as seções do PDF
+            const sectionCategoryMap = {
+                'PIZZA FRITA': 'Pizzas',
+                'PIZZAS': 'Pizzas',
+                'PRATOS A LA CARTE': 'Pratos',
+                'PASTAS & RISOTOS': 'Massas',
+                'PORÇÕES': 'Porções',
+                'CARNES': 'Pratos', // Carnes e Peixes são subseções de Pratos a La Carte, mas também listados como seções principais.
+                'PEIXES': 'Pratos',
+                'FRANGO': 'Pratos',
+                'CALABRESA': 'Pizzas',
+                'FRUTOS DO MAR': 'Pizzas', // Frutos do Mar pode ser pizza ou prato, aqui assumindo pizza pela estrutura do PDF
+                'À MODA': 'Pizzas', // Pelo contexto do PDF, "À MODA" se refere a pizzas especiais
+                'PRESUNTO': 'Pizzas', // Pelo contexto do PDF, "PRESUNTO" se refere a pizzas
+                'VEGETAIS': 'Pizzas', // Pelo contexto do PDF, "VEGETAIS" se refere a pizzas
+                'ENTRADAS': 'Entradas',
+                'SALADAS': 'Saladas',
+                'SOBREMESAS': 'Sobremesas',
+                'BEBIDAS': 'Bebidas',
+                'SOFT-DRINK': 'Bebidas',
+                'SUCOS': 'Bebidas',
+                'CERVEJAS': 'Bebidas',
+                'SODA ITALIANA': 'Bebidas',
+                'APERITIVOS': 'Bebidas',
+                'VINHOS': 'Bebidas',
+                'WHISKY': 'Bebidas',
+                'DRINKS': 'Bebidas',
+                'CALDOS': 'Pratos', // Caldos podem ser considerados pratos leves
+                'YAKISSOBA': 'Pratos',
+                'KIDS': 'Pratos' // Itens kids são pratos
+            };
+
+            let currentSection = '';
+            let currentCategory = '';
+
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+
+                // Verifica se a linha é um cabeçalho de seção e mapeia para uma categoria
+                const foundSection = Object.keys(sectionCategoryMap).find(section => line.toUpperCase().includes(section) && line.length < 40);
+                if (foundSection) {
+                    currentSection = foundSection;
+                    currentCategory = sectionCategoryMap[foundSection];
+                    continue; // Pula a linha do cabeçalho da seção
+                }
+
+                // Adiciona o item se estiver em uma categoria relevante e não for uma linha de preço ou sub-cabeçalho
+                if (currentCategory && !line.includes('$') && !line.includes('BROTINHO') && !line.includes('GRANDE') && line.length > 5 && !line.startsWith('Molho de tomate fresco')) {
+                    let itemName = line.replace(/['"]+/g, '').trim();
+                    let description = '';
+                    // Tenta capturar a próxima linha como descrição se existir e parecer uma descrição
+                    if (i + 1 < lines.length && lines[i+1].trim().length > 10 && !lines[i+1].trim().includes('$') && !lines[i+1].trim().includes('BROTINHO') && !lines[i+1].trim().includes('GRANDE')) {
+                        description = lines[i+1].trim().replace(/['"]+/g, '');
+                        // Heurística simples para verificar se é uma continuação da descrição ou um novo item
+                        if (description.toLowerCase().includes('molho') || description.toLowerCase().includes('com') || description.toLowerCase().includes('finalizado') || description.toLowerCase().includes('acompanha')) {
+                            menuItems.push({ name: itemName, description: description, section: currentSection, category: currentCategory });
+                            i++; // Pula a linha da descrição
+                            continue;
+                        }
+                    }
+                    menuItems.push({ name: itemName, description: description, section: currentSection, category: currentCategory });
+                }
+            }
+            return menuItems;
+        }
+
+        // Conteúdo do PDF (obtido via file_content_fetcher na turn anterior)
+        const pdfTextContent = `
+--- PAGE 1 ---
+
+
+PIZZA FRITA
+
+
+"BRÓCOLIS
+","\$ 89
+"
+"Molho de tomate fresco, brócolis, mussarela, alho frito.
+ azeitonas e orégano.
+ CALABRIA
+ Molho de tomate fresco, calabresa, mussarela,
+ azeitonas e orégano.
+","\$ 88
+"
+"DONA NONA
+ Molho de tomate fresco, presunto, ovo, catupiry, mussarela,
+ azeitonas e orégano.
+","\$ 89
+"
+"DUE FORMAGGIO
+ Molho de tomate fresco, catupiry, tomate, mussarela,
+ azeitonas e orégano.
+","\$ 88
+"
+"GALETINA
+ Molho de tomate fresco, catupiry, mussarela, frango desfiado,
+ azeitonas e orégano.
+ CAMARÃO
+ Molho de tomate fresco, camarão, cebolinha,
+ cream cheese e mussarela.
+ ALCACHOFRA
+ Molho de tomate fresco, alcachofra.
+ mussarela de búfala e tomate seco..
+ PERU
+ Molho de tomate fresco, peito de peru, palmito,
+ mussarela, tomate e cebola.
+ LOMBO
+ Molho de tomate fresco, mussarela, lombo candense,
+ champignon, catupiry.
+ FRANGOLINO
+ Molho de tomate fresco, frango, cheddar, milho,
+ mussarela, tomate picado.
+
+
+
+
+
+
+","\$ 89
+
+
+\$ 109
+
+
+\$ 98
+
+
+\$ 89
+
+
+\$ 89
+"
+
+
+
+,"\$ 89
+"
+
+ENTRADAS
+
+
+"ANTEPASTO
+","\$ 29
+"
+"Queijos, frios, patês, geléias e torradas artesanais.
+",
+"(Alguns itens podem variar conforme disponibilidade).
+",
+"BERINJELA AO FORNO
+","\$ 59
+"
+"Berinjela ao forno, pimentões vermelho, alho e azeite.
+",
+"Mussarela, provolone e pão artesanal.
+",
+"CORNICCIONE FRATELLO
+ Massa fina, molho de tomate fresco, alho frito,
+","\$ 49
+"
+"parmesão e azeite.
+
+
+CROSTINI
+
+
+Massa fina e crocante levemente temperada.
+","\$9
+"
+"FUNDO DE ALCACHOFRA
+ Alcachofra, molho 4 queijos gratinado e pão da casa.
+","\$ 59
+"
+,"\$ 59
+"
+"BURRATA AO PESTO
+ Burrata, tomatinho cereja, pesto de azeitona e manjericão.
+ Acompanha crostines.
+",
+"BRUSCHETTA
+ Pão rústico da casa, queijo, tomate e manjericão.
+","\$ 29
+"
+
+--- PAGE 2 ---
+
+
+PIZZAS
+
+
+"QUEIJOS
+","BROTINHO
+","GRANDE
+"
+"CAPRESE
+ Molho de tomate fresco, mussarela, manjericão, tomate, mussarela de búfala, pesto de azeitona e orégano.
+","\$ 85
+","\$ 115
+"
+"CINCO QUEIJOS
+","\$ 99
+","\$ 129
+"
+"Molho de tomate fresco, mussarela, catupiry, gorgonzola, parmesão, provolone, azeitonas e orégano.
+",,
+"GRATINADA
+ Molho de tomate fresco, generosa porção de catupíry, provolone, azeitonas e orégano.
+","\$ 75
+","\$ 105
+"
+"GORGONZOLA
+","\$ 79
+","\$ 109
+"
+"Molho de tomate fresco, gorgonzola, palmito, mussarela, tomate, azeitonas e orégano.
+",,
+"MARGUERITA
+","\$ 68
+","\$ 98
+"
+"Molho de tomate fresco, mussarela, tomate, parmesão, manjericão fresco, azeitonas e orégano.
+",,
+"MARGUERITA II
+","\$ 79
+","\$ 109
+"
+"Molho de tomate fresco, mussarela de búfala, tomate, parmesão, manjericão fresco, azeitonas e orégano.
+",,
+"MUSSARELA
+ Molho de tomate fresco, mussarela, tomate, azeitonas e orégano.
+","\$ 58
+","\$ 88
+"
+"NAPOLITAΑΝΑ
+ Molho de tomate fresco, mussarela, tomate, parmesão, azeitonas e orégano.
+","\$ 65
+","\$ 95
+"
+"POMODORO
+ Molho de tomate fresco, mussarela, tomate, parmesão, alho frito, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"QUEIJO BRIE
+ Molho de tomate fresco, mussarela, queijo brie, geléia de pimenta, azeitonas e orégano.
+","\$ 84
+","\$ 114
+"
+"QUEIJO BRIE ESPECIAL
+ Molho de tomate fresco, mussarela de búfala, queijo brie, cream cheese, rúcula, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"QUATRO QUEIJOS
+
+
+Molho de tomate fresco, mussarela, catupiry, provolone, parmesão, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"DONATELLO
+","\$ 69
+","\$ 99
+"
+
+Molho de tomate fresco, mussarela, ovo, cebola, bacon, parmesão, azeitonas e orégano.
+
+
+--- PAGE 3 ---
+
+"DEFUMADOS
+","BROTINHO
+","GRANDE
+"
+"BACON
+ Molho de tomate fresco, mussarela, bacon, azeitonas e orégano.
+","\$ 59
+","\$ 89
+"
+"BACON ESPECIAL
+ Molho de tomate fresco, catupiry, cebola, bacon, tomate picado, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"BRUNALE
+ Molho de tomate fresco, lombo canadense, milho, catupiry, mussarela, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"CATULOMBO
+ Molho de tomate fresco, lombo canadense, catupiry, cebola, azeitonas e orégano.
+","\$ 75
+","\$ 105
+"
+"CAPRICCIO
+ Molho de tomate fresco, mussarela, tomate, manjericão, presunto parma, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"DI PARMA
+ Molho de tomate fresco, mussarela, presunto parma, rúcula, tomate cereja, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"PARMA CHIQUE
+ Molho de tomate fresco, mussarela, presunto parma, rúcula, lascas de parmesão, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"LOMBINHO
+ Molho de tomate fresco, lombo canadense, palmito, mussarela, cebola, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"LOMBO ESPECIAL
+ Molho de tomate fresco, lombo canadense, champignon, bacon, mussarela, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"PALESTRA ITÁLIA
+ Molho de tomate fresco, alho poró, cream cheese, presunto parma, tomate cereja, azeitonas e orégano.
+","\$ 89
+","\$ 119
+"
+"PEPPERONI
+ Molho de tomate fresco, mussarela, pepperoni, pimentão vermelho, parmesão, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"PEPPER BLUE
+ Molho de tomate fresco, mussarela, pepperoni, gorgonzola, cebola, pimentão vermelho, azeitonas e orégano.
+","\$ 88
+","\$ 118
+"
+"PEPPERONI ESPECIAL
+ Molho de tomate fresco, pepperoni, catupiry parmesão, manjericão, azeitonas e orégano.
+","\$ 85
+","\$ 115
+"
+"PEITO DE PERU
+ Molho de tomate fresco, peito de peru, palmito, mussarela, tomate seco, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"SICILIANA
+ Molho de tomate fresco, mussarela, champignon refogado, bacon, azeitonas e orégano.
+","\$ 75
+","\$ 115
+"
+"CARNES
+
+
+CARNE SECA
+ Molho de tomate fresco, carne seca desfiada, ovos, mussarela, palmito, ervilha, cebola, azeitonas e orégano.
+","\$ 88
+","\$ 118
+"
+"FILÉ MIGNON
+ Molho de tomate fresco, filė mignon, mussarela, cebolas com molho especial,
+ cogumelos, tomate cereja, cebolinha, azeitonas e orégano.
+","\$ 99
+","\$ 129
+"
+"NORDESTINA
+","\$ 88
+","\$ 118
+"
+
+Molho de tomate fresco, carne seca desfiada, palmito, ovos, cebola, catupiry, azeitonas e orégano.
+
+Nossas pizzas são preparadas com massa de fermentação lenta de 48 horas.
+
+O molho de tomate é artesanal,
+
+feito com uma receita exclusiva e tomates frescos.
+
+
+--- PAGE 4 ---
+
+"VEGETAIS
+","BROTINHO
+","GRANDE
+"
+"ABOBRINHA
+ Molho de tomate fresco, mussarela, abobrinha, tomate, parmesão, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"ABOBRINHA ESPECIAL
+ Molho de tomate fresco, mussarela, abobrinha, gorgonzola, parmesão, tomate cereja, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"ALCACHOFRA
+ Molho de tomate fresco, alcachofra, presunto, mussarela, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"ALCACHOFRINHA
+ Molho de tomate fresco, alcachofra, tomate seco, mussarela de búfala, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"ALHO PORÓ
+ Molho de tomate fresco, mussarela, alho poró refogado, tomate cereja, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"BERINJELA
+ Berinjela marinada, alho, azeite, mussarela, pimentões, tomates picados, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"BRÓCOLIS
+ Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"BRÓCOLIS ESPECIAL
+ Molho de tomate fresco, brócolis, catupiry, bacon, alho frito, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"CEREJINHA
+ Molho de tomate fresco, rúcula, alcachofra, mussarela, tomate cereja, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"ESCAROLA
+ Molho de tomate fresco, escarola refogada, mussarela, bacon, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"ESCAROLA ESPECIAL
+ Molho de tomate fresco, escarola refogada, catupiry, gorgonzola, tomate seco, alho frito, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"LEVINHA
+ Molho de tomate fresco, brócolis, palmito, mussarela de búfala, tomate cereja, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"PALMITO
+ Molho de tomate fresco, palmito, mussarela, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"PALMITO ESPECIAL
+ Molho de tomate fresco, palmito, mussarela, catupiry, tomate seco, tomate, azeitonas e orégano.
+","\$ 78
+","\$ 108
+"
+"RÚCULA
+ Molho de tomate fresco, mussarela de búfala, rúcula, tomate seco, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"PRESUNTO
+","BROTINHO
+","GRANDE
+"
+"EL GRINGO
+ Molho de tomate fresco, presunto, avos, palmito, bacon, mussarela, tomate picado, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+
+,,
+,,
+,,
+"BAURU
+","\$ 65
+","\$ 95
+"
+"Molho de tomate fresco, presunto, mussarela, tomate, azeitonas e orégano.
+",,
+"LUSITANA
+","\$ 78
+","\$ 108
+"
+"Molho de tomate fresco, presunto, ervilha, ovos, cebola, palmito, mussarela, azeitonas e orégano.
+",,
+"PORTUGUESA
+
+
+Molho de tomate fresco, presunto, cebola, ovos, mussarela, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"SUPREMA
+","\$ 69
+","\$ 99
+"
+
+Molho de tomate fresco, presunto, cebola, catupiry, batata palha, azeitonas e orégano.
+
+DOM FRATELLO
+
+pizzeria e ristorante
+
+
+--- PAGE 5 ---
+
+
+--- PAGE 6 ---
+
+"FRANGO
+","BROTINHO
+","GRANDE
+"
+"CAIPIRA
+","\$ 69
+","\$ 99
+"
+"Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.
+",,
+"CATUFRANGO
+","\$ 69
+","\$ 99
+"
+"Molho de tomate fresco, frango desfiado, catupiry, azeitonas e orégano.
+",,
+"CAIPIRA
+","\$ 69
+","\$ 99
+"
+"Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.
+",,
+"GALINHÃO
+ Molho de tomate fresco, frango desfiado, cheddar, bacon, batata palha, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+"POLLO
+","\$ 79
+","\$ 109
+"
+
+Molho de tomate fresco, frango desfiado, cream cheese, tomate picado, azeitonas e orégano.
+
+
+"CALABRESA
+","BROTINHO
+","GRANDE
+"
+"BAIANA
+","\$ 68
+","\$ 98
+"
+"Molho de tomate fresco, calabresa, bacon, mussarela, cebola, azeitonas e orégano.
+",,
+"BAIANA À MODA
+ Molho de tomate fresco, calabresa, bacon, ovos, cebola, pimenta fresca, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"CALABRESA
+
+
+Molho de tomate fresco, calabresa, cebola, azeitonas e orégano.
+","\$ 58
+","\$ 88
+"
+"CATUBRESA
+","\$ 68
+","\$ 98
+"
+"Molho de tomate fresco
+
+
+, calabresa, cebola, catupiry, azeitonas e orégano.
+",,
+"CHILENA
+","\$ 68
+","\$ 98
+"
+"Molho de tomate fresco, mussarela, calabresa, parmesão, azeitonas e orégano.
+",,
+"TOSCANA
+ Molho de tomate fresco, calabresa moida, mussarela, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"TOSCANA ESPECIAL
+","\$ 78
+","\$ 108
+"
+
+Molho de tomate fresco, calabresa moida, mussarela, gorgonzola, cebola, pimenta biquinho, azeitonas e orégano.
+
+
+"FRUTOS DO MAR
+","BROTINHO
+","GRANDE
+"
+"ALICHE
+ Molho de tomate fresco, filė de aliche importado, tomate, parmesão, azeitonas e orégano.
+","\$ 89
+
+
+\$ 99
+","\$ 119
+
+
+\$ 129
+"
+"ALICHE
+ Molho de tomate fresco, mussarela, filé de aliche importado, tomate, parmesão, azeitonas e orégano.
+
+
+ATUM
+ Molho de tomate fresco, atum, cebola, azeitonas e orégano.
+","\$ 58
+","\$ 88
+"
+"ATUM II
+
+
+Molho de tomate fresco, atum, cebola, mussarela, tomate, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"ATUM À MODA
+ Molho de tomate fresco, atum, cebola, palmito, milho, azeitonas e orégano.
+","\$ 68
+","\$ 98
+"
+"ATUM ESPECIAL
+","\$ 88
+","\$ 118
+"
+"Molho de tomate fresco, atum sólido, cebola, catupiry, azeitonas e orégano.
+
+
+CAMARÃO
+ Molho de tomate fresco, camarões frescos e selecionados, mussarela, cebolinha fresca, azeitonas e orégano.
+","\$ 99
+","\$ 129
+"
+"CAMARÃO ESPECIAL
+","\$ 99
+","\$ 129
+"
+
+Molho de tomate fresco, camarão, cream cheese philadelphia, cebolinha fresca, azeitonas e orégano.
+
+TEMOS CALZONES
+
+CONSULTE SABORES E VALORES.
+
+
+--- PAGE 7 ---
+
+"À MODA
+","BROTINHO
+","GRANDE
+"
+"À MODA DA CASA
+
+
+Molho de tomate fresco, mussarela, calabresa moida, catupiry, parmesão ralado,
+ tomate, manjericão fresco, azeitonas e orégano.
+","\$ 79
+","\$ 109
+"
+" MODA DA GABY
+","\$ 85
+","\$ 115
+"
+"Molho de tomate fresco, frango desfiado, palmito, milho, catupiry, provolone, azeitonas e orégano.
+",,
+"À MODA DO CESINHA
+","\$ 78
+","\$ 108
+"
+"Molho de tomate fresco, calabresa moida, catupiry, frango, milho, mussarela, azeitonas e orégano.
+",,
+"À MODA DO MARCINHO
+ Molho de tomate fresco, calabresa, catupiry, mussarela, parmesão, azeitonas e orégano.
+","\$ 88
+","\$ 118
+"
+" MODA DO PATRÍCIO
+ Molho de tomate fresco, presunto, ovos, palmito, bacon, catupiry, tomate picado, azeitonas e orégano.
+","\$ 85
+","\$ 115
+"
+"À MODA DO PIZZAIOLO
+ Molho de tomate fresco, calabresa, palmito, cebola, mussarela, azeitonas e orégano.
+ À MODA DO THIAGO
+ Molho de tomate fresco, peito de peru defumado, cream cheese, cebola, mussarela, azeitonas e orégano.
+","\$ 79
+
+
+\$ 85
+","\$ 109
+
+
+\$ 115
+"
+
+"PIZZA DOCE
+","BROTINHO
+","GRANDE
+"
+"BANANA
+
+
+Banana, leite condensado, cereja e canela.
+","\$ 39
+","\$ 59
+"
+"BANOFFEE
+ Banana, açúcar e canela, cream cheese e
+ uma generosa camada de doce de leite especial.
+","\$ 59
+","\$ 79
+"
+"CHEESECAKE
+ Goiabada com cream cheese philadelphia.
+","\$ 59
+","\$ 79
+"
+"CHIQUITITA BACANA
+ Chocolate, banana, leite condensado e chocolate granulado.
+","\$ 65
+","\$ 85
+"
+"CHOCOLATE
+ Chocolate, leite condensado, cereja, chocolate granulado.
+","\$ 55
+","\$ 75
+"
+"NUTELLA
+
+
+Nutella e morango.
+","\$ 69
+","\$ 89
+"
+"NUTE M&M'S
+ Nutella com M&M original.
+","\$ 69
+","\$ 89
+"
+"SENSAÇÃO
+ Chocolate, morango, leite condensado e chocolate granulado.
+","\$ 59
+","\$ 79
+"
+
+TURBINE SUA PIZZA
+
+
+"COBERTURA EXTRA
+","\$ 29
+"
+"Catupiry, provolone, bacon, gorgonzola, mussarela, mussarela de búfala, parmesão.
+ Tomate seco, palmito, champignon, calabresa, pepperoni.
+",
+"BORDA RECHEADA
+","\$ 24
+"
+"Cream cheese, catupiry, cheddar, mussarela, calabresa, provolone, pão de alho.
+ Chocolate, doce de leite.
+",
+"SORVETE
+","\$ 28
+"
+
+Creme, chocolate ou morango.
+
+DOM FRATELLO
+
+pizzeria e ristorante
+
+
+--- PAGE 8 ---
+
+
+PRATOS A LA
+
+PASTAS & RISOTOS
+
+CARTE
+
+
+"CAMARÃO INTERNACIONAL
+","\$ 89
+"
+"Camarões servidos sobre cremoso arroz com ervilhas
+ e presunto, envolvido com molho branco,
+ gratinado com queijos e acompanhado de batata palha.
+",
+"RISOTO DE CAMARÃO
+ COM ALHO PORÓ
+","\$ 87
+"
+"Arroz arbóreo especial e camarões selecionados
+ com alho poro.
+",
+"RISOTO DE BRIE COM DAMASCO
+ Arroz arbóreo especial com queijo brie e damasco.
+","\$
+
+
+84
+"
+"RISOTO DE GORGONZOLA COM PERA
+ Arroz arbóreo especial com fatias de pera assada,
+ finalizado com queijo gorgonzola e nozes.
+","\$ 87
+"
+"RISOTO DE RÚCULA
+ E TOMATE SECO
+","\$ 79
+"
+"Arroz arbóreo preparado em caldo de legumes caseiro,
+ rúcula fresca e tomate seco.
+",
+
+"FETTUCCINE COM CAMARÃO
+ Massa artesanal da casa, camarões selecionados
+","\$ 79
+"
+"ao molho branco.
+",
+"TALHARIM
+",
+"MOLHO SUGO
+","\$ 69
+"
+"Massa artesanal da casa, com filé de frango grelhado.
+",
+"MOLHO 4 QUEIJOS
+ Massa artesanal da casa, com medalhão de filé mignon
+","\$ 79
+"
+"RAVIOLI 4 QUEIJOS
+ Mussarela, provolone, parmesão e gorgonzola.
+","\$ 65
+"
+"RAVIOLI CAPRESE
+","\$ 65
+"
+"Queijo, tomate seco e manjericão.
+",
+
+--- PAGE 9 ---
+
+
+SALADAS
+
+YAKISSOBA
+
+
+"SALADA TRADICIONAL
+ Folhas verdes, tomate e cebola.
+","\$ 25
+"
+"SALADA DOM FRATELLO
+ Folhas verdes, tomate cereja, palmito,
+ mussarela de búfala e pesto de azeitonas.
+","\$ 55
+"
+"SALADA CEASAR
+ Alface americana, tiras de frango e crotons.
+","\$ 55
+"
+"SALADA PARMA
+ Folhas verdes, tomate cereja,
+ presunto parma e lascas de parmesão.
+","\$ 58
+"
+"PEIXES
+",
+"SALMÃO AO MOLHO DE ERVAS
+ Salmão gratinado regado ao molho especial,
+ acompanhado de arroz com brócolis e purê de batata-baroa.
+","\$ 79
+"
+"SALMÃO AO
+ MOLHO DE MARACUJÁ
+ Arroz branco, folhas verdes purê de batata ou fritas.
+","\$ 79
+"
+"SALMÃO NA CHAPA
+ Salmão com legumes na chapa,
+ arroz branco e purê de batata.
+","\$ 79
+"
+"FILÉ DE TILÁPIA
+ filé de tilápia empanado, puré de batata
+ e arroz com brócolis.
+","\$ 69
+"
+"CARNES
+",
+"MEDALHÃO MIGNON
+ Medalhão filė mignon ao molho madeira,
+","\$ 75
+"
+"purê de mandioquinha e arroz branco.
+",
+"FILÉ PARMEGIANA
+ \$ 89 (1p)/\$ 149 (2p)
+ Filé mignon, molho artesanal da casa, mussarela, finalizado no
+ forno à lenha. Acompanha arroz e fritas.
+
+
+"
+"FILÉ MIGNON EM TIRAS
+","\$ 75
+"
+"Filé mignon em tiras com cebola, salteado na manteiga.
+ Acompanha: Arroz com brócolis, fritas e molho 4 queijos.
+",
+"STROGONOFF
+ Filé mignon ou frango preparado em um delicioso molho,
+ com champignon. Acompanha: arroz e batata palha.
+","\$ 69
+"
+"CALDOS
+",
+"CREME DE MADIOQUINHA
+ COM ALHO PORÓ
+ Acompanha: Pão artesanal da casa e queijo parmesão.
+","\$ 49
+"
+"CREME DE MANDIOQUINHA
+ COM FRANGO DESFIADO
+ Acompanha: Pão artesanal da casa e queijo parmesão.
+","\$ 49
+"
+"CALDO VERDE
+
+
+Creme de batata, couve, calabresa e bacon.
+ Acompanha: Pão artesanal da casa e queijo parmesão.
+","\$ 49
+"
+
+TRADICIONAL
+
+\$59 (1p)/\$89 (2p)
+
+Macarrão artesanal da casa, legumes, carne e frango. Preparado
+
+em molho oriental.
+
+CAMARÃO
+
+\$ 74 (1p)/\$ 109 (2p)
+
+Macarrão artesanal da casa, camarões selecionados
+
+e legumes. Preparado em molho oriental.
+
+VEGETARIANO
+
+\$ 49 (1p)/\$ 79 (2p)
+
+Macarrão artesanal da casa e legumes.
+ Preparado em molho oriental.
+
+KIDS
+
+PROCURANDO NEMO
+
+\$ 47
+
+Tiras de tilápia empanada, purê de batata.
+
+arroz branco e tomates cereja.
+
+A DAMA E O VAGABUNDO
+
+\$ 46
+
+Fettuccine artesanal ao molho sugo,
+ bolonhesa ou alho e óleo.
+
+GALINHA PINTADINHA
+
+\$ 49
+
+Isca de frango grelhado, fritas, arroz branco e tomate cereja.
+
+
+--- PAGE 10 ---
+
+vorom
+ Extra
+
+LA
+
+alc4.6
+
+ENECERIA MODELO, S. DER. L. DEC.
+ MEXICO, D. F. CERVEJA
+ PILSEN
+
+
+--- PAGE 11 ---
+
+
+PORÇÕES
+
+
+"BOLINHO DE MANDIOCA
+",
+"COM CARNE SECA
+","\$ 55
+"
+"Com mussarela.
+",
+"Acompanha geleia de pimenta da casa (8 unid.)
+",
+"CALABRESA NA CHAPA
+ COM CATUPIRY
+","\$ 59
+"
+"Calabresa defumada com toque especial de erva doce,
+ cebola, catupiry e pimenta biquinho.
+ Acompanha: pão artesanal da casa.
+ CAMARÃO
+ Camarões selecionados, passado na chapa
+ com alho frito e cebolinha..
+",
+,"\$ 89
+"
+,
+"DADINHO DE TAPIOCA
+ COM PARMESÃO
+
+
+Acompanha geleia de pimenta da casa (10 unid.)
+","\$ 49
+"
+"FRANGO CROCANTE
+ Pedaços de frango selecionados, envolto em uma
+ camada crocante com especiarias. Acompanha: fritas.
+ FRITAS
+ FRITAS ESPECIAL
+ Fritas com cheddar, bacon e mussarela.
+ ISCA DE TILÁPIA
+ Tilápia em tiras, empanadas, com molho da casa.
+ MIGNON 4 QUEIJOS NA CHAPA
+ Filé mignon em tiras na manteiga e cebola.
+ Acompanha: molho quatro queijos e pão artesanal da casa.
+
+
+
+
+
+
+
+
+","\$ 78
+
+
+\$ 39
+
+
+\$ 68
+
+
+\$ 79
+
+
+\$ 89
+"
+
+
+
+"PARMEGIANA APERITIVO
+ Filé mignon empanado, coberto com queijo e
+ molho artesanal ""para beliscar"". Acompanha: pão artesanal da casa.
+","\$ 79
+"
+"PASTELZINHO DE FEIRA
+ Carne ou queijo. Acompanha vinagrete (10 unid.).
+","\$ 49
+"
+"PASTELZINHO DE CAMARÃO
+ Camarões, catupiry, mussarela.
+ Acompanha vinagrete (10 unid.).
+","\$ 69
+"
+
+4.6
+
+C
+
+A
+
+SOBREMESAS
+
+
+"\$ 23
+
+
+BROWNIE
+"
+"Bolo de chocolate com sorvete de creme
+ CREME DE PAPAYA
+ de papaya com licor de cassis
+ DOCE DE ABÓBORA
+ calda e raspas de coco.
+ PETIT GATEAU
+ Bolinho de chocolate, sorvete de creme e calda de chocolate.
+
+
+\$ 20
+
+
+Creme
+
+
+
+
+\$ 15
+
+
+Com
+
+
+\$ 27
+
+
+"
+
+
+
+"\$ 17
+
+
+PUDIM DE LEITE CONDENSADO
+"
+"Pudim caseiro, com calda de caramelo.
+"
+"\$ 20
+
+
+TORTA HOLANDESA
+"
+"Creme de chocolate branco, ganache de chocolate meio amargo.
+"
+"\$ 17
+
+
+TAÇA DE SORVETE
+"
+"Creme, chocolate ou morango.
+"
+
+--- PAGE 12 ---
+
+BEBIDAS
+
+SOFT-DRINK
+
+
+"Refrigerante - lata
+","\$ 11
+"
+"Refrigerante - KS
+","\$9
+"
+"Água mineral - 500 ml
+","\$7
+"
+"Água de Coco
+","\$ 14
+"
+"Citrus
+","\$ 11
+"
+"Tônica
+","\$ 11
+"
+"H20h
+","\$ 13
+"
+"Ice Tea - lata
+","\$ 12
+"
+"Suco-Lata
+","\$ 12
+"
+"Café expresso
+","\$7
+"
+
+SUCOS
+
+
+"Abacaxi
+","\$ 15
+"
+"Abacaxi com hortelã
+","\$ 15
+"
+"Acerola
+","\$ 15
+"
+"Laranja Natural
+","\$ 15
+"
+"Laranja com acerola
+","\$ 15
+"
+"Laranja com morango
+","\$ 15
+"
+"Limão natural
+","\$ 15
+"
+"Maracujá
+","\$ 15
+"
+"Morango
+","\$ 15
+"
+"Uva integral
+","\$ 16
+"
+"Uva integral - jarra
+","\$ 39
+"
+
+CERVEJAS
+
+
+,"GARRAFA
+","LONG NECK
+","BALDE (3 UN.)
+"
+"Heineken
+","\$ 23
+","\$ 14
+","\$ 64
+"
+"Eisenbahm
+","\$ 20
+",,"\$ 55
+"
+"Amstel
+","\$ 20
+",,"\$ 55
+"
+"Original
+","\$ 21
+",,"\$ 58
+"
+
+SODA ITALIANA
+
+
+"Blueberry
+","\$ 19
+"
+"Maça verde
+","\$ 19
+"
+"Frutas vermelhas
+","\$ 19
+"
+"Frutas Vermelhas Zero Açúcar
+","\$ 19
+"
+"Granberry
+","\$ 19
+"
+"Pink Limonade
+","\$ 19
+"
+
+--- PAGE 13 ---
+
+APERITIVOS
+
+VINHOS
+
+
+"Amarula
+","\$ 39
+"
+"Cachaças Especiais
+","\$ 22
+"
+"Cachaça da casa - tonel
+","\$9
+"
+"Energético
+","\$ 19
+"
+"Campari
+","\$ 24
+"
+"Saquê
+","\$ 19
+"
+"Tequila Jose Cuervo
+","\$ 39
+"
+"Vodka Smirnoff
+","\$ 29
+"
+"Gim Nacional
+","\$ 29
+"
+"Gim Importado
+","\$ 34
+"
+
+NACIONAL
+
+
+"Vinho Colonial Jarra
+","\$ 59
+"
+"Vinho Colonial-Taça
+","\$ 24
+"
+"Vinho de Mesa - Especial
+","\$ 69
+"
+"Vinho de Mesa-750ml
+","\$ 59
+"
+"Vinho de Mesa - 245ml
+","\$ 39
+"
+"Vinho Rose - Taça
+","\$ 29
+"
+"Vinho Sauvignon Blanc - Taça
+","\$ 29
+"
+
+ARGENTINO
+
+WHISKY
+
+
+"Angelica Zapata
+","\$ 299
+"
+"Cordero con Riel de Lobo
+","\$ 139
+"
+"DV Catena
+","\$ 249
+"
+"La Linda
+","\$ 149
+"
+"Santa Helena Malbec
+","\$ 99
+"
+
+"Ballantines
+","\$ 44
+"
+"Jack Daniels
+","\$ 44
+"
+"Black Label
+","\$ 44
+"
+"Red Label
+","\$ 39
+"
+"White Horse
+","\$ 39
+"
+
+DRINKS
+
+CHILENO
+
+
+"Santa Helena Reservado
+","\$ 99
+"
+"Concha y Toro Reservado
+","\$ 99
+"
+"Gato Negro Reservado
+","\$ 109
+"
+"Tarapaca
+","\$ 119
+"
+"Casileiro del Diablo Reserva
+","\$ 129
+"
+
+"BATIDA ABACAXI
+","\$ 34
+"
+,
+"Abacaxi, vinho e leite condensado.
+ BATIDA MARACUJÁ
+ Leite condensado, maracujá e vodka.
+","\$ 34
+"
+"CAIPIRINHA
+ Limão, cachaça de excelente qualidade.
+","\$ 29
+"
+"CAIPIRINHA SAQUÊ
+ Morango ou maracujá.
+","\$ 32
+"
+"CAIPIROSKA SMINORF
+ Limão ou morango ou maracujá.
+","\$ 32
+"
+"CAPIRINHA BEER
+ Stella Artois, limão, açúcar.
+","\$ 34
+"
+"GIM TROPICAL
+ Gim, limão, laranja, Red Bull.
+","\$ 39
+"
+"LAGOA AZUL
+ Vodka, curaçau blue, mix de limão, soda limonada.
+","\$ 36
+"
+"MARGARITA
+ Tequila prata, licor de laranja, suco de limão, sal.
+ МОЛТО
+ Rum branco, limão em pedaços, hortelã, água com gás.
+","\$ 38
+
+
+\$ 36
+"
+"SEX ON THE BEACH
+ Vodka, licor de pêssego, suco de laranja, grenadine.
+","\$ 37
+"
+"TEQUILA SUNRISE
+ Tequila prata, suco de laranja, grenadine.
+","\$ 38
+"
+"SANGRIA JARRA
+
+
+Vinho ou suco de uva integral.
+","\$ 79
+"
+"SANGRIA - TAÇA
+","\$ 36
+"
+
+ESPANHOL
+
+Pata Negra Temparilho
+
+\$ 129
+
+ITALIANO
+
+Lambrusco (espumante)
+
+\$ 99
+
+PORTUGUÊS
+
+
+"Quinta Bons Ventos
+","\$ 109
+"
+"Periquita
+","\$ 139
+"
+"Casal Garcia
+","\$ 139
+"
+"ROLHA
+","\$ 39
+"
+
+DOM FRATELLO
+ pizzeria e ristorante
+
+Vinho ou suco de uva integral.
+
+
+--- PAGE 14 ---
+
+DOM FRATELLO
+
+pizzeria e ristorante
+`;
+
+        const suggestMenuItemBtn = document.getElementById('suggestMenuItemBtn');
+        const menuItemRecommendationDiv = document.getElementById('menuItemRecommendation');
+        const loadingMenuItem = document.getElementById('loadingMenuItem');
+
+        // Pré-processa os itens do cardápio quando o script é carregado
+        const parsedMenuItems = parseMenuFromText(pdfTextContent);
+        console.log("Itens do Cardápio Processados:", parsedMenuItems); // Para depuração
+
+        // Filtra os itens do cardápio para incluir apenas pizzas, pratos, massas e porções
+        const filteredMenuItems = parsedMenuItems.filter(item =>
+            ['Pizzas', 'Pratos', 'Massas', 'Porções'].includes(item.category)
+        );
+        console.log("Itens do Cardápio Filtrados:", filteredMenuItems); // Para depuração
+
+
+        suggestMenuItemBtn.addEventListener('click', () => {
+            if (filteredMenuItems.length === 0) {
+                menuItemRecommendationDiv.innerHTML = '<p class="text-red-600">Não foi possível encontrar itens de pizzas, pratos, massas ou porções para sugerir no cardápio.</p>';
+                return;
+            }
+
+            loadingMenuItem.classList.remove('hidden');
+            menuItemRecommendationDiv.innerHTML = ''; // Limpa a sugestão anterior
+
+            // Simula um atraso para "carregamento"
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * filteredMenuItems.length);
+                const suggestedItem = filteredMenuItems[randomIndex];
+
+                let suggestionHtml = `<p class="font-semibold text-dom-dark-blue">Nossa sugestão para você:</p>`;
+                suggestionHtml += `<p class="text-lg font-bold">${suggestedItem.name}</p>`;
+                if (suggestedItem.description) {
+                    suggestionHtml += `<p class="text-gray-700 mt-2">${suggestedItem.description}</p>`;
+                }
+                if (suggestedItem.section && suggestedItem.section !== suggestedItem.name) { // Evita duplicar o nome se a seção for igual
+                    suggestionHtml += `<p class="text-sm text-gray-500 mt-1">Categoria: ${suggestedItem.category || suggestedItem.section}</p>`;
+                }
+
+                menuItemRecommendationDiv.innerHTML = suggestionHtml;
+                loadingMenuItem.classList.add('hidden');
+            }, 1000); // 1 segundo de atraso
+        });
+    </script>
+</body>
+</html>
