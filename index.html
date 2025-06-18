@@ -71,13 +71,14 @@
 <body class="bg-dom-claro text-gray-800">
 
     <!-- Cabeçalho -->
-    <header class="bg-dom-dark-blue text-dom-claro py-4 shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
-            <!-- Espaço para o Logotipo -->
-            <img src="dom fratello.png" alt="Dom Fratello Logo" class="h-12 mb-2 md:mb-0">
+    <header class="bg-dom-dark-blue text-dom-claro py-2 md:py-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-4">
+            <!-- Espaço para o Logotipo - Visível em todas as telas, mas centralizado em mobile -->
+            <img src="dom fratello.png" alt="Dom Fratello Logo" class="h-10 md:h-12 mb-2 md:mb-0 mx-auto md:mx-0">
 
             <!-- Informações de Contato e Botões -->
-            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
+            <!-- Esconde em telas pequenas e exibe em telas médias para cima -->
+            <div class="hidden md:flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
                 <span class="flex items-center">
                     <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
@@ -98,6 +99,31 @@
                 <a href="Cardapio-2025-02-novo.pdf" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
                     Ver Cardápio
                 </a>
+            </div>
+
+            <!-- Botões e informações para mobile - visíveis apenas em telas pequenas -->
+            <div class="flex md:hidden flex-col items-center w-full space-y-2 mt-2">
+                <span class="flex items-center text-xs text-dom-claro">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    Rua Casuarinas, 164 - VGP, SP
+                </span>
+                <span class="flex items-center text-xs text-dom-claro">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 004.978 4.978l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    (11) 4158-1318
+                </span>
+                <div class="flex space-x-2 mt-2">
+                    <a href="https://web.whatsapp.com/send?phone=5511956981231&text=" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
+                        <img src="whatsapp.png" alt="WhatsApp Icon" class="inline-block w-4 h-4 mr-1">
+                        WhatsApp
+                    </a>
+                    <a href="Cardapio-2025-02-novo.pdf" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
+                        Ver Cardápio
+                    </a>
+                </div>
             </div>
         </div>
     </header>
