@@ -74,7 +74,7 @@
     <header class="bg-dom-dark-blue text-dom-claro py-2 md:py-4 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-4">
             <!-- Espaço para o Logotipo - Visível em todas as telas, mas centralizado em mobile -->
-            <img src="dom fratello.png"Dom Fratello Logo" class="h-10 md:h-12 mb-2 md:mb-0 mx-auto md:mx-0">
+            <img src="dom fratello.png" alt="Dom Fratello Logo" class="h-10 md:h-12 mb-2 md:mb-0 mx-auto md:mx-0">
 
             <!-- Informações de Contato e Botões -->
             <!-- Esconde em telas pequenas e exibe em telas médias para cima -->
@@ -269,6 +269,34 @@
                 <h2 class="text-4xl font-bold text-dom-dark-blue mb-8">Não sabe o que pedir? 🤔</h2>
                 <p class="text-lg text-gray-700 mb-6">Deixe-nos sugerir um item delicioso do nosso cardápio para você!</p>
                 <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <!-- Filtros de Categoria -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Todos" class="form-radio text-dom-dourado" checked>
+                            <span class="ml-2 text-gray-700">Todos</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Entradas" class="form-radio text-dom-dourado">
+                            <span class="ml-2 text-gray-700">Entradas</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Pizzas" class="form-radio text-dom-dourado">
+                            <span class="ml-2 text-gray-700">Pizzas</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Pratos" class="form-radio text-dom-dourado">
+                            <span class="ml-2 text-gray-700">Pratos</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Massas" class="form-radio text-dom-dourado">
+                            <span class="ml-2 text-gray-700">Massas</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="categoryFilter" value="Porções" class="form-radio text-dom-dourado">
+                            <span class="ml-2 text-gray-700">Porções</span>
+                        </label>
+                    </div>
+
                     <button id="suggestMenuItemBtn" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center mx-auto">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
@@ -290,7 +318,7 @@
         <section class="py-16 bg-dom-claro fade-in">
             <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8">
                 <div class="lg:w-1/2 text-center lg:text-left">
-                    <h2 class="text-4xl font-bold text-dom-dark-blue mb-6">Sobre o Dom Fratello</h2>
+                    <h2 class="text-4xl font-bold text-dom-dark-blue mb-6">Sobre a Dom Fratello</h2>
                     <p class="text-lg text-gray-700 leading-relaxed mb-4">
                         A Dom Fratello Pizzaria tem mais de 24 anos, começamos nossas atividades exatamente no dia 27 de julho lá do ano 2000. Como uma criança, nascemos pequeno, atendendo principalmente para o delivery, pois não tínhamos um espaço muito grande, podemos dizer que a Dom Fratello começou em uma porta.
 Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidade, sempre!
@@ -438,118 +466,107 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
         }
 
         // Dados dos itens do cardápio formatados exatamente como desejado
-        // Esta lista é baseada nas suas especificações e na transcrição do PDF
+        // Esta lista é baseada nas suas especificações e na transcrição fornecida
         const menuItemsData = [
-            // PIZZAS FRITAS
-            { name: "BRÓCOLIS", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizza" },
-            { name: "CALABRIA", description: "Molho de tomate fresco, calabresa, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "DONA NONA", description: "Molho de tomate fresco, presunto, ovo, catupiry, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "DUE FORMAGGIO", description: "Molho de tomate fresco, catupiry, tomate, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "GALETINA", description: "Molho de tomate fresco, catupiry, mussarela, frango desfiado, azeitonas e orégano.", category: "Pizza" },
-            { name: "CAMARÃO", description: "Molho de tomate fresco, camarão, cebolinha, cream cheese e mussarela.", category: "Pizza" },
-            { name: "ALCACHOFRA", description: "Molho de tomate fresco, alcachofra, mussarela de búfala e tomate seco.", category: "Pizza" },
-            { name: "PERU", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate e cebola.", category: "Pizza" },
-            { name: "LOMBO", description: "Molho de tomate fresco, mussarela, lombo canadense, champignon, catupiry.", category: "Pizza" },
-            { name: "FRANGOLINO", description: "Molho de tomate fresco, frango, cheddar, milho, mussarela, tomate picado.", category: "Pizza" },
+            // ENTRADAS (Colocado no início para seguir a ordem do filtro)
+            { name: "ANTEPASTO", description: "Queijos, frios, patês, geleias e torradas artesanais. (Alguns itens podem variar conforme disponibilidade).", category: "Entradas" },
+            { name: "BERINJELA AO FORNO", description: "Berinjela ao forno, pimentões vermelho, alho e azeite. Mussarela, provolone e pão artesanal.", category: "Entradas" },
+            { name: "CORNICCIONE FRATELLO", description: "Massa fina, molho de tomate fresco, alho frito, parmesão e azeite.", category: "Entradas" },
+            { name: "CROSTINI", description: "Massa fina e crocante levemente temperada.", category: "Entradas" },
+            { name: "FUNDO DE ALCACHOFRA", description: "Alcachofra, molho 4 queijos gratinado e pão da casa.", category: "Entradas" },
+            { name: "BURRATA AO PESTO", description: "Burrata, tomatinho cereja, pesto de azeitona e manjericão. Acompanha crostines.", category: "Entradas" },
+            { name: "BRUSCHETTA", description: "Pão rústico da casa, queijo, tomate e manjericão.", category: "Entradas" },
 
-            // ENTRADAS
-            { name: "ANTEPASTO", description: "Queijos, frios, patês, geleias e torradas artesanais. (Alguns itens podem variar conforme disponibilidade).", category: "Entrada" },
-            { name: "BERINJELA AO FORNO", description: "Berinjela ao forno, pimentões vermelho, alho e azeite. Mussarela, provolone e pão artesanal.", category: "Entrada" },
-            { name: "CORNICCIONE FRATELLO", description: "Massa fina, molho de tomate fresco, alho frito, parmesão e azeite.", category: "Entrada" },
-            { name: "CROSTINI", description: "Massa fina e crocante levemente temperada.", category: "Entrada" },
-            { name: "FUNDO DE ALCACHOFRA", description: "Alcachofra, molho 4 queijos gratinado e pão da casa.", category: "Entrada" },
-            { name: "BURRATA AO PESTO", description: "Burrata, tomatinho cereja, pesto de azeitona e manjericão. Acompanha crostines.", category: "Entrada" },
-            { name: "BRUSCHETTA", description: "Pão rústico da casa, queijo, tomate e manjericão.", category: "Entrada" },
+            // PIZZAS (inclui Pizzas Fritas)
+            { name: "BRÓCOLIS (Pizza Frita)", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CALABRIA (Pizza Frita)", description: "Molho de tomate fresco, calabresa, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "DONA NONA (Pizza Frita)", description: "Molho de tomate fresco, presunto, ovo, catupiry, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "DUE FORMAGGIO (Pizza Frita)", description: "Molho de tomate fresco, catupiry, tomate, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "GALETINA (Pizza Frita)", description: "Molho de tomate fresco, catupiry, mussarela, frango desfiado, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CAMARÃO (Pizza Frita)", description: "Molho de tomate fresco, camarão, cebolinha, cream cheese e mussarela.", category: "Pizzas" },
+            { name: "ALCACHOFRA (Pizza Frita)", description: "Molho de tomate fresco, alcachofra, mussarela de búfala e tomate seco.", category: "Pizzas" },
+            { name: "PERU (Pizza Frita)", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate e cebola.", category: "Pizzas" },
+            { name: "LOMBO (Pizza Frita)", description: "Molho de tomate fresco, mussarela, lombo canadense, champignon, catupiry.", category: "Pizzas" },
+            { name: "FRANGOLINO (Pizza Frita)", description: "Molho de tomate fresco, frango, cheddar, milho, mussarela, tomate picado.", category: "Pizzas" },
+            { name: "CAPRESE", description: "Molho de tomate fresco, mussarela, manjericão, tomate, mussarela de búfala, pesto de azeitona e orégano.", category: "Pizzas" },
+            { name: "CINCO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, gorgonzola, parmesão, provolone, azeitonas e orégano.", category: "Pizzas" },
+            { name: "GRATINADA", description: "Molho de tomate fresco, generosa porção de catupiry, provolone, azeitonas e orégano.", category: "Pizzas" },
+            { name: "GORGONZOLA (Pizza)", description: "Molho de tomate fresco, gorgonzola, palmito, mussarela, tomate, azeitonas e orégano.", category: "Pizzas" },
+            { name: "MARGUERITA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizzas" },
+            { name: "MARGUERITA II", description: "Molho de tomate fresco, mussarela de búfala, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizzas" },
+            { name: "MUSSARELA", description: "Molho de tomate fresco, mussarela, tomate, azeitonas e orégano.", category: "Pizzas" },
+            { name: "NAPOLITANA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "POMODORO", description: "Molho de tomate fresco, mussarela, tomate, parmesão, alho frito, azeitonas e orégano.", category: "Pizzas" },
+            { name: "QUEIJO BRIE", description: "Molho de tomate fresco, mussarela, queijo brie, geleia de pimenta, azeitonas e orégano.", category: "Pizzas" },
+            { name: "QUEIJO BRIE ESPECIAL", description: "Molho de tomate fresco, mussarela de búfala, queijo brie, cream cheese, rúcula, azeitonas e orégano.", category: "Pizzas" },
+            { name: "QUATRO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, provolone, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "DONATELLO", description: "Molho de tomate fresco, mussarela, ovo, cebola, bacon, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BACON (Pizza)", description: "Molho de tomate fresco, mussarela, bacon, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BACON ESPECIAL (Pizza)", description: "Molho de tomate fresco, catupiry, cebola, bacon, tomate picado, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BRUNALE", description: "Molho de tomate fresco, lombo canadense, milho, catupiry, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CATULOMBO", description: "Molho de tomate fresco, lombo canadense, catupiry, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CAPRICCIO", description: "Molho de tomate fresco, mussarela, tomate, manjericão, presunto parma, azeitonas e orégano.", category: "Pizzas" },
+            { name: "DI PARMA", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PARMA CHIQUE", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, lascas de parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "LOMBINHO", description: "Molho de tomate fresco, lombo canadense, palmito, mussarela, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "LOMBO ESPECIAL (Pizza)", description: "Molho de tomate fresco, lombo canadense, champignon, bacon, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PALESTRA ITÁLIA", description: "Molho de tomate fresco, alho poró, cream cheese, presunto parma, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PEPPERONI", description: "Molho de tomate fresco, mussarela, pepperoni, pimentão vermelho, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PEPPER BLUE", description: "Molho de tomate fresco, mussarela, pepperoni, gorgonzola, cebola, pimentão vermelho, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PEPPERONI ESPECIAL", description: "Molho de tomate fresco, pepperoni, catupiry, parmesão, manjericão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PEITO DE PERU (Pizza)", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate seco, azeitonas e orégano.", category: "Pizzas" },
+            { name: "SICILIANA", description: "Molho de tomate fresco, mussarela, champignon refogado, bacon, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CARNE SECA (Pizza)", description: "Molho de tomate fresco, carne seca desfiada, ovos, mussarela, palmito, ervilha, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "FILÉ MIGNON (Pizza)", description: "Molho de tomate fresco, filé mignon, mussarela, cebolas com molho especial, cogumelos, tomate cereja, cebolinha, azeitonas e orégano.", category: "Pizzas" },
+            { name: "NORDESTINA (Pizza)", description: "Molho de tomate fresco, carne seca desfiada, palmito, ovos, cebola, catupiry, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ABOBRINHA (Pizza)", description: "Molho de tomate fresco, mussarela, abobrinha, tomate, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ABOBRINHA ESPECIAL (Pizza)", description: "Molho de tomate fresco, mussarela, abobrinha, gorgonzola, parmesão, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ALCACHOFRA (Vegetais Pizza)", description: "Molho de tomate fresco, alcachofra, presunto, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ALCACHOFRINHA", description: "Molho de tomate fresco, alcachofra, tomate seco, mussarela de búfala, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ALHO PORÓ (Pizza)", description: "Molho de tomate fresco, mussarela, alho poró refogado, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BERINJELA (Pizza)", description: "Berinjela marinada, alho, azeite, mussarela, pimentões, tomates picados, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BRÓCOLIS (Pizza)", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BRÓCOLIS ESPECIAL (Pizza)", description: "Molho de tomate fresco, brócolis, catupiry, bacon, alho frito, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CEREJINHA", description: "Molho de tomate fresco, rúcula, alcachofra, mussarela, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ESCAROLA (Pizza)", description: "Molho de tomate fresco, escarola refogada, mussarela, bacon, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ESCAROLA ESPECIAL (Pizza)", description: "Molho de tomate fresco, escarola refogada, catupiry, gorgonzola, tomate seco, alho frito, azeitonas e orégano.", category: "Pizzas" },
+            { name: "LEVINHA", description: "Molho de tomate fresco, brócolis, palmito, mussarela de búfala, tomate cereja, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PALMITO (Pizza)", description: "Molho de tomate fresco, palmito, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PALMITO ESPECIAL (Pizza)", description: "Molho de tomate fresco, palmito, mussarela, catupiry, tomate seco, tomate, azeitonas e orégano.", category: "Pizzas" },
+            { name: "RÚCULA (Pizza)", description: "Molho de tomate fresco, mussarela de búfala, rúcula, tomate seco, azeitonas e orégano.", category: "Pizzas" },
+            { name: "EL GRINGO (Pizza)", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, mussarela, tomate picado, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BAURU (Pizza)", description: "Molho de tomate fresco, presunto, mussarela, tomate, azeitonas e orégano.", category: "Pizzas" },
+            { name: "LUSITANA", description: "Molho de tomate fresco, presunto, ervilha, ovos, cebola, palmito, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "PORTUGUESA", description: "Molho de tomate fresco, presunto, cebola, ovos, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "SUPREMA", description: "Molho de tomate fresco, presunto, cebola, catupiry, batata palha, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CAIPIRA (Pizza)", description: "Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CATUFRANGO", description: "Molho de tomate fresco, frango desfiado, catupiry, azeitonas e orégano.", category: "Pizzas" },
+            { name: "GALINHÃO", description: "Molho de tomate fresco, frango desfiado, cheddar, bacon, batata palha, azeitonas e orégano.", category: "Pizzas" },
+            { name: "POLLO", description: "Molho de tomate fresco, frango desfiado, cream cheese, tomate picado, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BAIANA (Pizza)", description: "Molho de tomate fresco, calabresa, bacon, mussarela, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "BAIANA À MODA", description: "Molho de tomate fresco, calabresa, bacon, ovos, cebola, pimenta fresca, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CALABRESA (Pizza)", description: "Molho de tomate fresco, calabresa, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CATUBRESA", description: "Molho de tomate fresco, calabresa, cebola, catupiry, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CHILENA", description: "Molho de tomate fresco, mussarela, calabresa, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "TOSCANA (Pizza)", description: "Molho de tomate fresco, calabresa moída, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "TOSCANA ESPECIAL", description: "Molho de tomate fresco, calabresa moída, mussarela, gorgonzola, cebola, pimenta biquinho, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ALICHE (Pizza)", description: "Molho de tomate fresco, filé de aliche importado, tomate, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ATUM (Pizza)", description: "Molho de tomate fresco, atum, cebola, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ATUM II", description: "Molho de tomate fresco, atum, cebola, mussarela, tomate, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ATUM À MODA", description: "Molho de tomate fresco, atum, cebola, palmito, milho, azeitonas e orégano.", category: "Pizzas" },
+            { name: "ATUM ESPECIAL (Pizza)", description: "Molho de tomate fresco, atum sólido, cebola, catupiry, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CAMARÃO (Frutos do Mar Pizza)", description: "Molho de tomate fresco, camarões frescos e selecionados, mussarela, cebolinha fresca, azeitonas e orégano.", category: "Pizzas" },
+            { name: "CAMARÃO ESPECIAL (Frutos do Mar Pizza)", description: "Molho de tomate fresco, camarão, cream cheese philadelphia, cebolinha fresca, azeitonas e orégano.", category: "Pizzas" },
+            { name: "À MODA DA CASA (Pizza)", description: "Molho de tomate fresco, mussarela, calabresa moída, catupiry, parmesão ralado, tomate, manjericão fresco, azeitonas e orégano.", category: "Pizzas" },
+            { name: "MODA DA GABY", description: "Molho de tomate fresco, frango desfiado, palmito, milho, catupiry, provolone, azeitonas e orégano.", category: "Pizzas" },
+            { name: "À MODA DO CESINHA", description: "Molho de tomate fresco, calabresa moída, catupiry, frango, milho, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "À MODA DO MARCINHO", description: "Molho de tomate fresco, calabresa, catupiry, mussarela, parmesão, azeitonas e orégano.", category: "Pizzas" },
+            { name: "MODA DO PATRÍCIO", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, catupiry, tomate picado, azeitonas e orégano.", category: "Pizzas" },
+            { name: "À MODA DO PIZZAIOLO", description: "Molho de tomate fresco, calabresa, palmito, cebola, mussarela, azeitonas e orégano.", category: "Pizzas" },
+            { name: "À MODA DO THIAGO", description: "Molho de tomate fresco, peito de peru defumado, cream cheese, cebola, mussarela, azeitonas e orégano.", category: "Pizzas" },
 
-            // PIZZAS
-            { name: "CAPRESE", description: "Molho de tomate fresco, mussarela, manjericão, tomate, mussarela de búfala, pesto de azeitona e orégano.", category: "Pizza" },
-            { name: "CINCO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, gorgonzola, parmesão, provolone, azeitonas e orégano.", category: "Pizza" },
-            { name: "GRATINADA", description: "Molho de tomate fresco, generosa porção de catupiry, provolone, azeitonas e orégano.", category: "Pizza" },
-            { name: "GORGONZOLA", description: "Molho de tomate fresco, gorgonzola, palmito, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
-            { name: "MARGUERITA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
-            { name: "MARGUERITA II", description: "Molho de tomate fresco, mussarela de búfala, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
-            { name: "MUSSARELA", description: "Molho de tomate fresco, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
-            { name: "NAPOLITANA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "POMODORO", description: "Molho de tomate fresco, mussarela, tomate, parmesão, alho frito, azeitonas e orégano.", category: "Pizza" },
-            { name: "QUEIJO BRIE", description: "Molho de tomate fresco, mussarela, queijo brie, geleia de pimenta, azeitonas e orégano.", category: "Pizza" },
-            { name: "QUEIJO BRIE ESPECIAL", description: "Molho de tomate fresco, mussarela de búfala, queijo brie, cream cheese, rúcula, azeitonas e orégano.", category: "Pizza" },
-            { name: "QUATRO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, provolone, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "DONATELLO", description: "Molho de tomate fresco, mussarela, ovo, cebola, bacon, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "BACON", description: "Molho de tomate fresco, mussarela, bacon, azeitonas e orégano.", category: "Pizza" },
-            { name: "BACON ESPECIAL", description: "Molho de tomate fresco, catupiry, cebola, bacon, tomate picado, azeitonas e orégano.", category: "Pizza" },
-            { name: "BRUNALE", description: "Molho de tomate fresco, lombo canadense, milho, catupiry, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "CATULOMBO", description: "Molho de tomate fresco, lombo canadense, catupiry, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "CAPRICCIO", description: "Molho de tomate fresco, mussarela, tomate, manjericão, presunto parma, azeitonas e orégano.", category: "Pizza" },
-            { name: "DI PARMA", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "PARMA CHIQUE", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, lascas de parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "LOMBINHO", description: "Molho de tomate fresco, lombo canadense, palmito, mussarela, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "LOMBO ESPECIAL", description: "Molho de tomate fresco, lombo canadense, champignon, bacon, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "PALESTRA ITÁLIA", description: "Molho de tomate fresco, alho poró, cream cheese, presunto parma, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "PEPPERONI", description: "Molho de tomate fresco, mussarela, pepperoni, pimentão vermelho, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "PEPPER BLUE", description: "Molho de tomate fresco, mussarela, pepperoni, gorgonzola, cebola, pimentão vermelho, azeitonas e orégano.", category: "Pizza" },
-            { name: "PEPPERONI ESPECIAL", description: "Molho de tomate fresco, pepperoni, catupiry, parmesão, manjericão, azeitonas e orégano.", category: "Pizza" },
-            { name: "PEITO DE PERU", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate seco, azeitonas e orégano.", category: "Pizza" },
-            { name: "SICILIANA", description: "Molho de tomate fresco, mussarela, champignon refogado, bacon, azeitonas e orégano.", category: "Pizza" },
-            { name: "CARNE SECA", description: "Molho de tomate fresco, carne seca desfiada, ovos, mussarela, palmito, ervilha, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "FILÉ MIGNON", description: "Molho de tomate fresco, filé mignon, mussarela, cebolas com molho especial, cogumelos, tomate cereja, cebolinha, azeitonas e orégano.", category: "Pizza" },
-            { name: "NORDESTINA", description: "Molho de tomate fresco, carne seca desfiada, palmito, ovos, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
-            { name: "ABOBRINHA", description: "Molho de tomate fresco, mussarela, abobrinha, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "ABOBRINHA ESPECIAL", description: "Molho de tomate fresco, mussarela, abobrinha, gorgonzola, parmesão, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "ALCACHOFRA", description: "Molho de tomate fresco, alcachofra, presunto, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "ALCACHOFRINHA", description: "Molho de tomate fresco, alcachofra, tomate seco, mussarela de búfala, azeitonas e orégano.", category: "Pizza" },
-            { name: "ALHO PORÓ", description: "Molho de tomate fresco, mussarela, alho poró refogado, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "BERINJELA", description: "Berinjela marinada, alho, azeite, mussarela, pimentões, tomates picados, azeitonas e orégano.", category: "Pizza" },
-            { name: "BRÓCOLIS", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizza" },
-            { name: "BRÓCOLIS ESPECIAL", description: "Molho de tomate fresco, brócolis, catupiry, bacon, alho frito, azeitonas e orégano.", category: "Pizza" },
-            { name: "CEREJINHA", description: "Molho de tomate fresco, rúcula, alcachofra, mussarela, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "ESCAROLA", description: "Molho de tomate fresco, escarola refogada, mussarela, bacon, azeitonas e orégano.", category: "Pizza" },
-            { name: "ESCAROLA ESPECIAL", description: "Molho de tomate fresco, escarola refogada, catupiry, gorgonzola, tomate seco, alho frito, azeitonas e orégano.", category: "Pizza" },
-            { name: "LEVINHA", description: "Molho de tomate fresco, brócolis, palmito, mussarela de búfala, tomate cereja, azeitonas e orégano.", category: "Pizza" },
-            { name: "PALMITO", description: "Molho de tomate fresco, palmito, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "PALMITO ESPECIAL", description: "Molho de tomate fresco, palmito, mussarela, catupiry, tomate seco, tomate, azeitonas e orégano.", category: "Pizza" },
-            { name: "RÚCULA", description: "Molho de tomate fresco, mussarela de búfala, rúcula, tomate seco, azeitonas e orégano.", category: "Pizza" },
-            { name: "EL GRINGO", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, mussarela, tomate picado, azeitonas e orégano.", category: "Pizza" },
-            { name: "BAURU", description: "Molho de tomate fresco, presunto, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
-            { name: "LUSITANA", description: "Molho de tomate fresco, presunto, ervilha, ovos, cebola, palmito, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "PORTUGUESA", description: "Molho de tomate fresco, presunto, cebola, ovos, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "SUPREMA", description: "Molho de tomate fresco, presunto, cebola, catupiry, batata palha, azeitonas e orégano.", category: "Pizza" },
-            { name: "CAIPIRA", description: "Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.", category: "Pizza" },
-            { name: "CATUFRANGO", description: "Molho de tomate fresco, frango desfiado, catupiry, azeitonas e orégano.", category: "Pizza" },
-            { name: "GALINHÃO", description: "Molho de tomate fresco, frango desfiado, cheddar, bacon, batata palha, azeitonas e orégano.", category: "Pizza" },
-            { name: "POLLO", description: "Molho de tomate fresco, frango desfiado, cream cheese, tomate picado, azeitonas e orégano.", category: "Pizza" },
-            { name: "BAIANA", description: "Molho de tomate fresco, calabresa, bacon, mussarela, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "BAIANA À MODA", description: "Molho de tomate fresco, calabresa, bacon, ovos, cebola, pimenta fresca, azeitonas e orégano.", category: "Pizza" },
-            { name: "CALABRESA", description: "Molho de tomate fresco, calabresa, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "CATUBRESA", description: "Molho de tomate fresco, calabresa, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
-            { name: "CHILENA", description: "Molho de tomate fresco, mussarela, calabresa, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "TOSCANA", description: "Molho de tomate fresco, calabresa moída, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "TOSCANA ESPECIAL", description: "Molho de tomate fresco, calabresa moída, mussarela, gorgonzola, cebola, pimenta biquinho, azeitonas e orégano.", category: "Pizza" },
-            { name: "ALICHE", description: "Molho de tomate fresco, filé de aliche importado, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "ATUM", description: "Molho de tomate fresco, atum, cebola, azeitonas e orégano.", category: "Pizza" },
-            { name: "ATUM II", description: "Molho de tomate fresco, atum, cebola, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
-            { name: "ATUM À MODA", description: "Molho de tomate fresco, atum, cebola, palmito, milho, azeitonas e orégano.", category: "Pizza" },
-            { name: "ATUM ESPECIAL", description: "Molho de tomate fresco, atum sólido, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
-            { name: "CAMARÃO", description: "Molho de tomate fresco, camarões frescos e selecionados, mussarela, cebolinha fresca, azeitonas e orégano.", category: "Pizza" },
-            { name: "CAMARÃO ESPECIAL", description: "Molho de tomate fresco, camarão, cream cheese philadelphia, cebolinha fresca, azeitonas e orégano.", category: "Pizza" },
-            { name: "À MODA DA CASA", description: "Molho de tomate fresco, mussarela, calabresa moída, catupiry, parmesão ralado, tomate, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
-            { name: "MODA DA GABY", description: "Molho de tomate fresco, frango desfiado, palmito, milho, catupiry, provolone, azeitonas e orégano.", category: "Pizza" },
-            { name: "À MODA DO CESINHA", description: "Molho de tomate fresco, calabresa moída, catupiry, frango, milho, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "À MODA DO MARCINHO", description: "Molho de tomate fresco, calabresa, catupiry, mussarela, parmesão, azeitonas e orégano.", category: "Pizza" },
-            { name: "MODA DO PATRÍCIO", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, catupiry, tomate picado, azeitonas e orégano.", category: "Pizza" },
-            { name: "À MODA DO PIZZAIOLO", description: "Molho de tomate fresco, calabresa, palmito, cebola, mussarela, azeitonas e orégano.", category: "Pizza" },
-            { name: "À MODA DO THIAGO", description: "Molho de tomate fresco, peito de peru defumado, cream cheese, cebola, mussarela, azeitonas e orégano.", category: "Pizza" },
-
-            // PRATOS E MASSAS
+            // PRATOS
             { name: "CAMARÃO INTERNACIONAL", description: "Camarões servidos sobre cremoso arroz com ervilhas e presunto, envolvido com molho branco, gratinado com queijos e acompanhado de batata palha.", category: "Pratos" },
-            { name: "RISOTO DE CAMARÃO COM ALHO PORÓ", description: "Arroz arbóreo especial e camarões selecionados com alho poró.", category: "Massas" },
-            { name: "RISOTO DE BRIE COM DAMASCO", description: "Arroz arbóreo especial com queijo brie e damasco.", category: "Massas" },
-            { name: "RISOTO DE GORGONZOLA COM PERA", description: "Arroz arbóreo especial com fatias de pera assada, finalizado com queijo gorgonzola e nozes.", category: "Massas" },
-            { name: "RISOTO DE RÚCULA E TOMATE SECO", description: "Arroz arbóreo preparado em caldo de legumes caseiro, rúcula fresca e tomate seco.", category: "Massas" },
-            { name: "FETTUCCINE COM CAMARÃO", description: "Massa artesanal da casa, camarões selecionados ao molho branco.", category: "Massas" },
-            { name: "TALHARIM MOLHO SUGO", description: "Massa artesanal da casa, com filé de frango grelhado.", category: "Massas" },
-            { name: "MOLHO 4 QUEIJOS", description: "Massa artesanal da casa, com medalhão de filé mignon.", category: "Massas" },
-            { name: "RAVIOLI 4 QUEIJOS", description: "Mussarela, provolone, parmesão e gorgonzola.", category: "Massas" },
-            { name: "RAVIOLI CAPRESE", description: "Queijo, tomate seco e manjericão.", category: "Massas" },
             { name: "SALMÃO AO MOLHO DE ERVAS", description: "Salmão gratinado regado ao molho especial, acompanhado de arroz com brócolis e purê de batata-baroa.", category: "Pratos" },
             { name: "SALMÃO AO MOLHO DE MARACUJÁ", description: "Arroz branco, folhas verdes, purê de batata ou fritas.", category: "Pratos" },
             { name: "SALMÃO NA CHAPA", description: "Salmão com legumes na chapa, arroz branco e purê de batata.", category: "Pratos" },
@@ -567,14 +584,25 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
             { name: "PROCURANDO NEMO", description: "Tiras de tilápia empanada, purê de batata, arroz branco e tomates cereja.", category: "Pratos" },
             { name: "A DAMA E O VAGABUNDO", description: "Fettuccine artesanal ao molho sugo, bolonhesa ou alho e óleo.", category: "Pratos" },
             { name: "GALINHA PINTADINHA", description: "Isca de frango grelhado, fritas, arroz branco e tomate cereja.", category: "Pratos" },
+            
+            // MASSAS (Separado de Pratos para seguir o filtro)
+            { name: "RISOTO DE CAMARÃO COM ALHO PORÓ", description: "Arroz arbóreo especial e camarões selecionados com alho poró.", category: "Massas" },
+            { name: "RISOTO DE BRIE COM DAMASCO", description: "Arroz arbóreo especial com queijo brie e damasco.", category: "Massas" },
+            { name: "RISOTO DE GORGONZOLA COM PERA", description: "Arroz arbóreo especial com fatias de pera assada, finalizado com queijo gorgonzola e nozes.", category: "Massas" },
+            { name: "RISOTO DE RÚCULA E TOMATE SECO", description: "Arroz arbóreo preparado em caldo de legumes caseiro, rúcula fresca e tomate seco.", category: "Massas" },
+            { name: "FETTUCCINE COM CAMARÃO", description: "Massa artesanal da casa, camarões selecionados ao molho branco.", category: "Massas" },
+            { name: "TALHARIM MOLHO SUGO", description: "Massa artesanal da casa, com filé de frango grelhado.", category: "Massas" },
+            { name: "MOLHO 4 QUEIJOS (Massa)", description: "Massa artesanal da casa, com medalhão de filé mignon.", category: "Massas" },
+            { name: "RAVIOLI 4 QUEIJOS", description: "Mussarela, provolone, parmesão e gorgonzola.", category: "Massas" },
+            { name: "RAVIOLI CAPRESE", description: "Queijo, tomate seco e manjericão.", category: "Massas" },
 
             // PORÇÕES
             { name: "BOLINHO DE MANDIOCA COM CARNE SECA", description: "Com mussarela. Acompanha geleia de pimenta da casa (8 unid.).", category: "Porções" },
             { name: "CALABRESA NA CHAPA COM CATUPIRY", description: "Calabresa defumada com toque especial de erva doce, cebola, catupiry e pimenta biquinho. Acompanha: pão artesanal da casa.", category: "Porções" },
-            { name: "CAMARÃO", description: "Camarões selecionados, passado na chapa com alho frito e cebolinha.", category: "Porções" },
+            { name: "CAMARÃO (Porção)", description: "Camarões selecionados, passado na chapa com alho frito e cebolinha.", category: "Porções" },
             { name: "DADINHO DE TAPIOCA COM PARMESÃO", description: "Acompanha geleia de pimenta da casa (10 unid.).", category: "Porções" },
             { name: "FRANGO CROCANTE", description: "Pedaços de frango selecionados, envolto em uma camada crocante com especiarias. Acompanha: fritas.", category: "Porções" },
-            { name: "FRITAS", description: "Porção de batatas fritas crocantes.", category: "Porções" }, // Added a default description as it was missing
+            { name: "FRITAS", description: "Porção de batatas fritas crocantes.", category: "Porções" }, 
             { name: "FRITAS ESPECIAL", description: "Fritas com cheddar, bacon e mussarela.", category: "Porções" },
             { name: "ISCA DE TILÁPIA", description: "Tilápia em tiras, empanadas, com molho da casa.", category: "Porções" },
             { name: "MIGNON 4 QUEIJOS NA CHAPA", description: "Filé mignon em tiras na manteiga e cebola. Acompanha: molho quatro queijos e pão artesanal da casa.", category: "Porções" },
@@ -586,15 +614,31 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
         const suggestMenuItemBtn = document.getElementById('suggestMenuItemBtn');
         const menuItemRecommendationDiv = document.getElementById('menuItemRecommendation');
         const loadingMenuItem = document.getElementById('loadingMenuItem');
+        const categoryFilters = document.querySelectorAll('input[name="categoryFilter"]');
 
-        // Filtra os itens do cardápio para incluir apenas as categorias desejadas
-        const filteredMenuItems = menuItemsData.filter(item =>
-            ['Pizzas', 'Pratos', 'Massas', 'Porções', 'Entradas'].includes(item.category)
-        );
+        let currentSelectedCategory = "Todos"; // Estado inicial do filtro
+
+        // Atualiza a categoria selecionada quando um rádio é clicado
+        categoryFilters.forEach(filter => {
+            filter.addEventListener('change', (event) => {
+                currentSelectedCategory = event.target.value;
+            });
+        });
 
         suggestMenuItemBtn.addEventListener('click', () => {
-            if (filteredMenuItems.length === 0) {
-                menuItemRecommendationDiv.innerHTML = '<p class="text-red-600">Não foi possível encontrar itens para sugerir nas categorias selecionadas.</p>';
+            let itemsToSuggest = [];
+
+            if (currentSelectedCategory === "Todos") {
+                // Inclui todas as categorias relevantes para "Todos"
+                itemsToSuggest = menuItemsData.filter(item =>
+                    ['Pizzas', 'Pratos', 'Massas', 'Porções', 'Entradas'].includes(item.category)
+                );
+            } else {
+                itemsToSuggest = menuItemsData.filter(item => item.category === currentSelectedCategory);
+            }
+
+            if (itemsToSuggest.length === 0) {
+                menuItemRecommendationDiv.innerHTML = `<p class="text-red-600">Não foi possível encontrar itens na categoria "${currentSelectedCategory}" para sugerir no momento.</p>`;
                 return;
             }
 
@@ -603,8 +647,8 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
 
             // Simula um atraso para "carregamento" para uma melhor experiência do usuário
             setTimeout(() => {
-                const randomIndex = Math.floor(Math.random() * filteredMenuItems.length);
-                const suggestedItem = filteredMenuItems[randomIndex];
+                const randomIndex = Math.floor(Math.random() * itemsToSuggest.length);
+                const suggestedItem = itemsToSuggest[randomIndex];
 
                 // Formata a saída exatamente como você solicitou
                 let suggestionHtml = `<p class="font-semibold text-dom-dark-blue">Nossa sugestão para você:</p>`;
