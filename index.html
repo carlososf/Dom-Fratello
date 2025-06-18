@@ -91,7 +91,7 @@
                     </svg>
                     (11) 4158-1318
                 </span>
-                <a href="https://web.whatsapp.com/send?phone=5511956981231&text=" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                <a href="https://api.whatsapp.com/send/?phone=5511956981231&text&type=phone_number&app_absent=0" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
                     <!-- Ícone do WhatsApp em PNG -->
                     <img src="whatsapp.png" alt="WhatsApp Icon" class="inline-block w-5 h-5 mr-2">
                     WhatsApp
@@ -116,7 +116,7 @@
                     (11) 4158-1318
                 </span>
                 <div class="flex space-x-2 mt-2">
-                    <a href="https://web.whatsapp.com/send?phone=5511956981231&text=" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
+                    <a href="https://api.whatsapp.com/send/?phone=5511956981231&text&type=phone_number&app_absent=0" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
                         <img src="whatsapp.png" alt="WhatsApp Icon" class="inline-block w-4 h-4 mr-1">
                         WhatsApp
                     </a>
@@ -135,7 +135,7 @@
             <div class="z-10 text-dom-claro p-8 rounded-lg fade-in">
                 <h2 class="text-5xl md:text-7xl font-bold mb-4 leading-tight scale-in">Um verdadeiro sentimento Gastronômico</h2>
                 <p class="text-lg md:text-xl mb-8">Tradição, paixão e ingredientes frescos para uma experiência inesquecível.</p>
-                <a href="#reservar" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                <a href="https://api.whatsapp.com/send/?phone=5511956981231&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20uma%20reserva!&type=phone_number&app_absent=0" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
                     Fazer Reserva
                 </a>
             </div>
@@ -323,7 +323,7 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold text-dom-dourado mb-8">Planeje Sua Visita ou Peça Online!</h2>
                 <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
-                    <a href="https://web.whatsapp.com/send?phone=5511956981231&text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva." target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+                    <a href="https://api.whatsapp.com/send/?phone=5511956981231&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20uma%20reserva!&type=phone_number&app_absent=0" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
                         Fazer Reserva via WhatsApp
                     </a>
                     <a href="https://pedido.anota.ai/loja/dom-fratello-pizza-cia?f=msa" target="_blank" class="bg-white hover:bg-gray-200 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
@@ -437,1547 +437,182 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
             });
         }
 
-        // Função para extrair itens do cardápio do texto do PDF e categorizá-los
-        function parseMenuFromText(text) {
-            const menuItems = [];
-            const lines = text.split('\n');
-            // Mapa para categorizar as seções do PDF
-            const sectionCategoryMap = {
-                'PIZZA FRITA': 'Pizzas',
-                'PIZZAS': 'Pizzas',
-                'PRATOS A LA CARTE': 'Pratos',
-                'PASTAS & RISOTOS': 'Massas',
-                'PORÇÕES': 'Porções',
-                'CARNES': 'Pratos', // Carnes e Peixes são subseções de Pratos a La Carte, mas também listados como seções principais.
-                'PEIXES': 'Pratos',
-                'FRANGO': 'Pratos',
-                'CALABRESA': 'Pizzas',
-                'FRUTOS DO MAR': 'Pizzas', // Frutos do Mar pode ser pizza ou prato, aqui assumindo pizza pela estrutura do PDF
-                'À MODA': 'Pizzas', // Pelo contexto do PDF, "À MODA" se refere a pizzas especiais
-                'PRESUNTO': 'Pizzas', // Pelo contexto do PDF, "PRESUNTO" se refere a pizzas
-                'VEGETAIS': 'Pizzas', // Pelo contexto do PDF, "VEGETAIS" se refere a pizzas
-                'ENTRADAS': 'Entradas',
-                'SALADAS': 'Saladas',
-                'SOBREMESAS': 'Sobremesas',
-                'BEBIDAS': 'Bebidas',
-                'SOFT-DRINK': 'Bebidas',
-                'SUCOS': 'Bebidas',
-                'CERVEJAS': 'Bebidas',
-                'SODA ITALIANA': 'Bebidas',
-                'APERITIVOS': 'Bebidas',
-                'VINHOS': 'Bebidas',
-                'WHISKY': 'Bebidas',
-                'DRINKS': 'Bebidas',
-                'CALDOS': 'Pratos', // Caldos podem ser considerados pratos leves
-                'YAKISSOBA': 'Pratos',
-                'KIDS': 'Pratos' // Itens kids são pratos
-            };
-
-            let currentSection = '';
-            let currentCategory = '';
-
-            for (let i = 0; i < lines.length; i++) {
-                let line = lines[i].trim();
-
-                // Verifica se a linha é um cabeçalho de seção e mapeia para uma categoria
-                const foundSection = Object.keys(sectionCategoryMap).find(section => line.toUpperCase().includes(section) && line.length < 40);
-                if (foundSection) {
-                    currentSection = foundSection;
-                    currentCategory = sectionCategoryMap[foundSection];
-                    continue; // Pula a linha do cabeçalho da seção
-                }
-
-                // Adiciona o item se estiver em uma categoria relevante e não for uma linha de preço ou sub-cabeçalho
-                if (currentCategory && !line.includes('$') && !line.includes('BROTINHO') && !line.includes('GRANDE') && line.length > 5 && !line.startsWith('Molho de tomate fresco')) {
-                    let itemName = line.replace(/['"]+/g, '').trim();
-                    let description = '';
-                    // Tenta capturar a próxima linha como descrição se existir e parecer uma descrição
-                    if (i + 1 < lines.length && lines[i+1].trim().length > 10 && !lines[i+1].trim().includes('$') && !lines[i+1].trim().includes('BROTINHO') && !lines[i+1].trim().includes('GRANDE')) {
-                        description = lines[i+1].trim().replace(/['"]+/g, '');
-                        // Heurística simples para verificar se é uma continuação da descrição ou um novo item
-                        if (description.toLowerCase().includes('molho') || description.toLowerCase().includes('com') || description.toLowerCase().includes('finalizado') || description.toLowerCase().includes('acompanha')) {
-                            menuItems.push({ name: itemName, description: description, section: currentSection, category: currentCategory });
-                            i++; // Pula a linha da descrição
-                            continue;
-                        }
-                    }
-                    menuItems.push({ name: itemName, description: description, section: currentSection, category: currentCategory });
-                }
-            }
-            return menuItems;
-        }
-
-        // Conteúdo do PDF (obtido via file_content_fetcher na turn anterior)
-        const pdfTextContent = `
---- PAGE 1 ---
-
-
-PIZZA FRITA
-
-
-"BRÓCOLIS
-","\$ 89
-"
-"Molho de tomate fresco, brócolis, mussarela, alho frito.
- azeitonas e orégano.
- CALABRIA
- Molho de tomate fresco, calabresa, mussarela,
- azeitonas e orégano.
-","\$ 88
-"
-"DONA NONA
- Molho de tomate fresco, presunto, ovo, catupiry, mussarela,
- azeitonas e orégano.
-","\$ 89
-"
-"DUE FORMAGGIO
- Molho de tomate fresco, catupiry, tomate, mussarela,
- azeitonas e orégano.
-","\$ 88
-"
-"GALETINA
- Molho de tomate fresco, catupiry, mussarela, frango desfiado,
- azeitonas e orégano.
- CAMARÃO
- Molho de tomate fresco, camarão, cebolinha,
- cream cheese e mussarela.
- ALCACHOFRA
- Molho de tomate fresco, alcachofra.
- mussarela de búfala e tomate seco..
- PERU
- Molho de tomate fresco, peito de peru, palmito,
- mussarela, tomate e cebola.
- LOMBO
- Molho de tomate fresco, mussarela, lombo candense,
- champignon, catupiry.
- FRANGOLINO
- Molho de tomate fresco, frango, cheddar, milho,
- mussarela, tomate picado.
-
-
-
-
-
-
-","\$ 89
-
-
-\$ 109
-
-
-\$ 98
-
-
-\$ 89
-
-
-\$ 89
-"
-
-
-
-,"\$ 89
-"
-
-ENTRADAS
-
-
-"ANTEPASTO
-","\$ 29
-"
-"Queijos, frios, patês, geléias e torradas artesanais.
-",
-"(Alguns itens podem variar conforme disponibilidade).
-",
-"BERINJELA AO FORNO
-","\$ 59
-"
-"Berinjela ao forno, pimentões vermelho, alho e azeite.
-",
-"Mussarela, provolone e pão artesanal.
-",
-"CORNICCIONE FRATELLO
- Massa fina, molho de tomate fresco, alho frito,
-","\$ 49
-"
-"parmesão e azeite.
-
-
-CROSTINI
-
-
-Massa fina e crocante levemente temperada.
-","\$9
-"
-"FUNDO DE ALCACHOFRA
- Alcachofra, molho 4 queijos gratinado e pão da casa.
-","\$ 59
-"
-,"\$ 59
-"
-"BURRATA AO PESTO
- Burrata, tomatinho cereja, pesto de azeitona e manjericão.
- Acompanha crostines.
-",
-"BRUSCHETTA
- Pão rústico da casa, queijo, tomate e manjericão.
-","\$ 29
-"
-
---- PAGE 2 ---
-
-
-PIZZAS
-
-
-"QUEIJOS
-","BROTINHO
-","GRANDE
-"
-"CAPRESE
- Molho de tomate fresco, mussarela, manjericão, tomate, mussarela de búfala, pesto de azeitona e orégano.
-","\$ 85
-","\$ 115
-"
-"CINCO QUEIJOS
-","\$ 99
-","\$ 129
-"
-"Molho de tomate fresco, mussarela, catupiry, gorgonzola, parmesão, provolone, azeitonas e orégano.
-",,
-"GRATINADA
- Molho de tomate fresco, generosa porção de catupíry, provolone, azeitonas e orégano.
-","\$ 75
-","\$ 105
-"
-"GORGONZOLA
-","\$ 79
-","\$ 109
-"
-"Molho de tomate fresco, gorgonzola, palmito, mussarela, tomate, azeitonas e orégano.
-",,
-"MARGUERITA
-","\$ 68
-","\$ 98
-"
-"Molho de tomate fresco, mussarela, tomate, parmesão, manjericão fresco, azeitonas e orégano.
-",,
-"MARGUERITA II
-","\$ 79
-","\$ 109
-"
-"Molho de tomate fresco, mussarela de búfala, tomate, parmesão, manjericão fresco, azeitonas e orégano.
-",,
-"MUSSARELA
- Molho de tomate fresco, mussarela, tomate, azeitonas e orégano.
-","\$ 58
-","\$ 88
-"
-"NAPOLITAΑΝΑ
- Molho de tomate fresco, mussarela, tomate, parmesão, azeitonas e orégano.
-","\$ 65
-","\$ 95
-"
-"POMODORO
- Molho de tomate fresco, mussarela, tomate, parmesão, alho frito, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"QUEIJO BRIE
- Molho de tomate fresco, mussarela, queijo brie, geléia de pimenta, azeitonas e orégano.
-","\$ 84
-","\$ 114
-"
-"QUEIJO BRIE ESPECIAL
- Molho de tomate fresco, mussarela de búfala, queijo brie, cream cheese, rúcula, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"QUATRO QUEIJOS
-
-
-Molho de tomate fresco, mussarela, catupiry, provolone, parmesão, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"DONATELLO
-","\$ 69
-","\$ 99
-"
-
-Molho de tomate fresco, mussarela, ovo, cebola, bacon, parmesão, azeitonas e orégano.
-
-
---- PAGE 3 ---
-
-"DEFUMADOS
-","BROTINHO
-","GRANDE
-"
-"BACON
- Molho de tomate fresco, mussarela, bacon, azeitonas e orégano.
-","\$ 59
-","\$ 89
-"
-"BACON ESPECIAL
- Molho de tomate fresco, catupiry, cebola, bacon, tomate picado, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"BRUNALE
- Molho de tomate fresco, lombo canadense, milho, catupiry, mussarela, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"CATULOMBO
- Molho de tomate fresco, lombo canadense, catupiry, cebola, azeitonas e orégano.
-","\$ 75
-","\$ 105
-"
-"CAPRICCIO
- Molho de tomate fresco, mussarela, tomate, manjericão, presunto parma, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"DI PARMA
- Molho de tomate fresco, mussarela, presunto parma, rúcula, tomate cereja, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"PARMA CHIQUE
- Molho de tomate fresco, mussarela, presunto parma, rúcula, lascas de parmesão, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"LOMBINHO
- Molho de tomate fresco, lombo canadense, palmito, mussarela, cebola, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"LOMBO ESPECIAL
- Molho de tomate fresco, lombo canadense, champignon, bacon, mussarela, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"PALESTRA ITÁLIA
- Molho de tomate fresco, alho poró, cream cheese, presunto parma, tomate cereja, azeitonas e orégano.
-","\$ 89
-","\$ 119
-"
-"PEPPERONI
- Molho de tomate fresco, mussarela, pepperoni, pimentão vermelho, parmesão, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"PEPPER BLUE
- Molho de tomate fresco, mussarela, pepperoni, gorgonzola, cebola, pimentão vermelho, azeitonas e orégano.
-","\$ 88
-","\$ 118
-"
-"PEPPERONI ESPECIAL
- Molho de tomate fresco, pepperoni, catupiry parmesão, manjericão, azeitonas e orégano.
-","\$ 85
-","\$ 115
-"
-"PEITO DE PERU
- Molho de tomate fresco, peito de peru, palmito, mussarela, tomate seco, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"SICILIANA
- Molho de tomate fresco, mussarela, champignon refogado, bacon, azeitonas e orégano.
-","\$ 75
-","\$ 115
-"
-"CARNES
-
-
-CARNE SECA
- Molho de tomate fresco, carne seca desfiada, ovos, mussarela, palmito, ervilha, cebola, azeitonas e orégano.
-","\$ 88
-","\$ 118
-"
-"FILÉ MIGNON
- Molho de tomate fresco, filė mignon, mussarela, cebolas com molho especial,
- cogumelos, tomate cereja, cebolinha, azeitonas e orégano.
-","\$ 99
-","\$ 129
-"
-"NORDESTINA
-","\$ 88
-","\$ 118
-"
-
-Molho de tomate fresco, carne seca desfiada, palmito, ovos, cebola, catupiry, azeitonas e orégano.
-
-Nossas pizzas são preparadas com massa de fermentação lenta de 48 horas.
-
-O molho de tomate é artesanal,
-
-feito com uma receita exclusiva e tomates frescos.
-
-
---- PAGE 4 ---
-
-"VEGETAIS
-","BROTINHO
-","GRANDE
-"
-"ABOBRINHA
- Molho de tomate fresco, mussarela, abobrinha, tomate, parmesão, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"ABOBRINHA ESPECIAL
- Molho de tomate fresco, mussarela, abobrinha, gorgonzola, parmesão, tomate cereja, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"ALCACHOFRA
- Molho de tomate fresco, alcachofra, presunto, mussarela, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"ALCACHOFRINHA
- Molho de tomate fresco, alcachofra, tomate seco, mussarela de búfala, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"ALHO PORÓ
- Molho de tomate fresco, mussarela, alho poró refogado, tomate cereja, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"BERINJELA
- Berinjela marinada, alho, azeite, mussarela, pimentões, tomates picados, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"BRÓCOLIS
- Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"BRÓCOLIS ESPECIAL
- Molho de tomate fresco, brócolis, catupiry, bacon, alho frito, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"CEREJINHA
- Molho de tomate fresco, rúcula, alcachofra, mussarela, tomate cereja, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"ESCAROLA
- Molho de tomate fresco, escarola refogada, mussarela, bacon, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"ESCAROLA ESPECIAL
- Molho de tomate fresco, escarola refogada, catupiry, gorgonzola, tomate seco, alho frito, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"LEVINHA
- Molho de tomate fresco, brócolis, palmito, mussarela de búfala, tomate cereja, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"PALMITO
- Molho de tomate fresco, palmito, mussarela, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"PALMITO ESPECIAL
- Molho de tomate fresco, palmito, mussarela, catupiry, tomate seco, tomate, azeitonas e orégano.
-","\$ 78
-","\$ 108
-"
-"RÚCULA
- Molho de tomate fresco, mussarela de búfala, rúcula, tomate seco, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"PRESUNTO
-","BROTINHO
-","GRANDE
-"
-"EL GRINGO
- Molho de tomate fresco, presunto, avos, palmito, bacon, mussarela, tomate picado, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-
-,,
-,,
-,,
-"BAURU
-","\$ 65
-","\$ 95
-"
-"Molho de tomate fresco, presunto, mussarela, tomate, azeitonas e orégano.
-",,
-"LUSITANA
-","\$ 78
-","\$ 108
-"
-"Molho de tomate fresco, presunto, ervilha, ovos, cebola, palmito, mussarela, azeitonas e orégano.
-",,
-"PORTUGUESA
-
-
-Molho de tomate fresco, presunto, cebola, ovos, mussarela, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"SUPREMA
-","\$ 69
-","\$ 99
-"
-
-Molho de tomate fresco, presunto, cebola, catupiry, batata palha, azeitonas e orégano.
-
-DOM FRATELLO
-
-pizzeria e ristorante
-
-
---- PAGE 5 ---
-
-
---- PAGE 6 ---
-
-"FRANGO
-","BROTINHO
-","GRANDE
-"
-"CAIPIRA
-","\$ 69
-","\$ 99
-"
-"Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.
-",,
-"CATUFRANGO
-","\$ 69
-","\$ 99
-"
-"Molho de tomate fresco, frango desfiado, catupiry, azeitonas e orégano.
-",,
-"CAIPIRA
-","\$ 69
-","\$ 99
-"
-"Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.
-",,
-"GALINHÃO
- Molho de tomate fresco, frango desfiado, cheddar, bacon, batata palha, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-"POLLO
-","\$ 79
-","\$ 109
-"
-
-Molho de tomate fresco, frango desfiado, cream cheese, tomate picado, azeitonas e orégano.
-
-
-"CALABRESA
-","BROTINHO
-","GRANDE
-"
-"BAIANA
-","\$ 68
-","\$ 98
-"
-"Molho de tomate fresco, calabresa, bacon, mussarela, cebola, azeitonas e orégano.
-",,
-"BAIANA À MODA
- Molho de tomate fresco, calabresa, bacon, ovos, cebola, pimenta fresca, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"CALABRESA
-
-
-Molho de tomate fresco, calabresa, cebola, azeitonas e orégano.
-","\$ 58
-","\$ 88
-"
-"CATUBRESA
-","\$ 68
-","\$ 98
-"
-"Molho de tomate fresco
-
-
-, calabresa, cebola, catupiry, azeitonas e orégano.
-",,
-"CHILENA
-","\$ 68
-","\$ 98
-"
-"Molho de tomate fresco, mussarela, calabresa, parmesão, azeitonas e orégano.
-",,
-"TOSCANA
- Molho de tomate fresco, calabresa moida, mussarela, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"TOSCANA ESPECIAL
-","\$ 78
-","\$ 108
-"
-
-Molho de tomate fresco, calabresa moida, mussarela, gorgonzola, cebola, pimenta biquinho, azeitonas e orégano.
-
-
-"FRUTOS DO MAR
-","BROTINHO
-","GRANDE
-"
-"ALICHE
- Molho de tomate fresco, filė de aliche importado, tomate, parmesão, azeitonas e orégano.
-","\$ 89
-
-
-\$ 99
-","\$ 119
-
-
-\$ 129
-"
-"ALICHE
- Molho de tomate fresco, mussarela, filé de aliche importado, tomate, parmesão, azeitonas e orégano.
-
-
-ATUM
- Molho de tomate fresco, atum, cebola, azeitonas e orégano.
-","\$ 58
-","\$ 88
-"
-"ATUM II
-
-
-Molho de tomate fresco, atum, cebola, mussarela, tomate, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"ATUM À MODA
- Molho de tomate fresco, atum, cebola, palmito, milho, azeitonas e orégano.
-","\$ 68
-","\$ 98
-"
-"ATUM ESPECIAL
-","\$ 88
-","\$ 118
-"
-"Molho de tomate fresco, atum sólido, cebola, catupiry, azeitonas e orégano.
-
-
-CAMARÃO
- Molho de tomate fresco, camarões frescos e selecionados, mussarela, cebolinha fresca, azeitonas e orégano.
-","\$ 99
-","\$ 129
-"
-"CAMARÃO ESPECIAL
-","\$ 99
-","\$ 129
-"
-
-Molho de tomate fresco, camarão, cream cheese philadelphia, cebolinha fresca, azeitonas e orégano.
-
-TEMOS CALZONES
-
-CONSULTE SABORES E VALORES.
-
-
---- PAGE 7 ---
-
-"À MODA
-","BROTINHO
-","GRANDE
-"
-"À MODA DA CASA
-
-
-Molho de tomate fresco, mussarela, calabresa moida, catupiry, parmesão ralado,
- tomate, manjericão fresco, azeitonas e orégano.
-","\$ 79
-","\$ 109
-"
-" MODA DA GABY
-","\$ 85
-","\$ 115
-"
-"Molho de tomate fresco, frango desfiado, palmito, milho, catupiry, provolone, azeitonas e orégano.
-",,
-"À MODA DO CESINHA
-","\$ 78
-","\$ 108
-"
-"Molho de tomate fresco, calabresa moida, catupiry, frango, milho, mussarela, azeitonas e orégano.
-",,
-"À MODA DO MARCINHO
- Molho de tomate fresco, calabresa, catupiry, mussarela, parmesão, azeitonas e orégano.
-","\$ 88
-","\$ 118
-"
-" MODA DO PATRÍCIO
- Molho de tomate fresco, presunto, ovos, palmito, bacon, catupiry, tomate picado, azeitonas e orégano.
-","\$ 85
-","\$ 115
-"
-"À MODA DO PIZZAIOLO
- Molho de tomate fresco, calabresa, palmito, cebola, mussarela, azeitonas e orégano.
- À MODA DO THIAGO
- Molho de tomate fresco, peito de peru defumado, cream cheese, cebola, mussarela, azeitonas e orégano.
-","\$ 79
-
-
-\$ 85
-","\$ 109
-
-
-\$ 115
-"
-
-"PIZZA DOCE
-","BROTINHO
-","GRANDE
-"
-"BANANA
-
-
-Banana, leite condensado, cereja e canela.
-","\$ 39
-","\$ 59
-"
-"BANOFFEE
- Banana, açúcar e canela, cream cheese e
- uma generosa camada de doce de leite especial.
-","\$ 59
-","\$ 79
-"
-"CHEESECAKE
- Goiabada com cream cheese philadelphia.
-","\$ 59
-","\$ 79
-"
-"CHIQUITITA BACANA
- Chocolate, banana, leite condensado e chocolate granulado.
-","\$ 65
-","\$ 85
-"
-"CHOCOLATE
- Chocolate, leite condensado, cereja, chocolate granulado.
-","\$ 55
-","\$ 75
-"
-"NUTELLA
-
-
-Nutella e morango.
-","\$ 69
-","\$ 89
-"
-"NUTE M&M'S
- Nutella com M&M original.
-","\$ 69
-","\$ 89
-"
-"SENSAÇÃO
- Chocolate, morango, leite condensado e chocolate granulado.
-","\$ 59
-","\$ 79
-"
-
-TURBINE SUA PIZZA
-
-
-"COBERTURA EXTRA
-","\$ 29
-"
-"Catupiry, provolone, bacon, gorgonzola, mussarela, mussarela de búfala, parmesão.
- Tomate seco, palmito, champignon, calabresa, pepperoni.
-",
-"BORDA RECHEADA
-","\$ 24
-"
-"Cream cheese, catupiry, cheddar, mussarela, calabresa, provolone, pão de alho.
- Chocolate, doce de leite.
-",
-"SORVETE
-","\$ 28
-"
-
-Creme, chocolate ou morango.
-
-DOM FRATELLO
-
-pizzeria e ristorante
-
-
---- PAGE 8 ---
-
-
-PRATOS A LA
-
-PASTAS & RISOTOS
-
-CARTE
-
-
-"CAMARÃO INTERNACIONAL
-","\$ 89
-"
-"Camarões servidos sobre cremoso arroz com ervilhas
- e presunto, envolvido com molho branco,
- gratinado com queijos e acompanhado de batata palha.
-",
-"RISOTO DE CAMARÃO
- COM ALHO PORÓ
-","\$ 87
-"
-"Arroz arbóreo especial e camarões selecionados
- com alho poro.
-",
-"RISOTO DE BRIE COM DAMASCO
- Arroz arbóreo especial com queijo brie e damasco.
-","\$
-
-
-84
-"
-"RISOTO DE GORGONZOLA COM PERA
- Arroz arbóreo especial com fatias de pera assada,
- finalizado com queijo gorgonzola e nozes.
-","\$ 87
-"
-"RISOTO DE RÚCULA
- E TOMATE SECO
-","\$ 79
-"
-"Arroz arbóreo preparado em caldo de legumes caseiro,
- rúcula fresca e tomate seco.
-",
-
-"FETTUCCINE COM CAMARÃO
- Massa artesanal da casa, camarões selecionados
-","\$ 79
-"
-"ao molho branco.
-",
-"TALHARIM
-",
-"MOLHO SUGO
-","\$ 69
-"
-"Massa artesanal da casa, com filé de frango grelhado.
-",
-"MOLHO 4 QUEIJOS
- Massa artesanal da casa, com medalhão de filé mignon
-","\$ 79
-"
-"RAVIOLI 4 QUEIJOS
- Mussarela, provolone, parmesão e gorgonzola.
-","\$ 65
-"
-"RAVIOLI CAPRESE
-","\$ 65
-"
-"Queijo, tomate seco e manjericão.
-",
-
---- PAGE 9 ---
-
-
-SALADAS
-
-YAKISSOBA
-
-
-"SALADA TRADICIONAL
- Folhas verdes, tomate e cebola.
-","\$ 25
-"
-"SALADA DOM FRATELLO
- Folhas verdes, tomate cereja, palmito,
- mussarela de búfala e pesto de azeitonas.
-","\$ 55
-"
-"SALADA CEASAR
- Alface americana, tiras de frango e crotons.
-","\$ 55
-"
-"SALADA PARMA
- Folhas verdes, tomate cereja,
- presunto parma e lascas de parmesão.
-","\$ 58
-"
-"PEIXES
-",
-"SALMÃO AO MOLHO DE ERVAS
- Salmão gratinado regado ao molho especial,
- acompanhado de arroz com brócolis e purê de batata-baroa.
-","\$ 79
-"
-"SALMÃO AO
- MOLHO DE MARACUJÁ
- Arroz branco, folhas verdes purê de batata ou fritas.
-","\$ 79
-"
-"SALMÃO NA CHAPA
- Salmão com legumes na chapa,
- arroz branco e purê de batata.
-","\$ 79
-"
-"FILÉ DE TILÁPIA
- filé de tilápia empanado, puré de batata
- e arroz com brócolis.
-","\$ 69
-"
-"CARNES
-",
-"MEDALHÃO MIGNON
- Medalhão filė mignon ao molho madeira,
-","\$ 75
-"
-"purê de mandioquinha e arroz branco.
-",
-"FILÉ PARMEGIANA
- \$ 89 (1p)/\$ 149 (2p)
- Filé mignon, molho artesanal da casa, mussarela, finalizado no
- forno à lenha. Acompanha arroz e fritas.
-
-
-"
-"FILÉ MIGNON EM TIRAS
-","\$ 75
-"
-"Filé mignon em tiras com cebola, salteado na manteiga.
- Acompanha: Arroz com brócolis, fritas e molho 4 queijos.
-",
-"STROGONOFF
- Filé mignon ou frango preparado em um delicioso molho,
- com champignon. Acompanha: arroz e batata palha.
-","\$ 69
-"
-"CALDOS
-",
-"CREME DE MADIOQUINHA
- COM ALHO PORÓ
- Acompanha: Pão artesanal da casa e queijo parmesão.
-","\$ 49
-"
-"CREME DE MANDIOQUINHA
- COM FRANGO DESFIADO
- Acompanha: Pão artesanal da casa e queijo parmesão.
-","\$ 49
-"
-"CALDO VERDE
-
-
-Creme de batata, couve, calabresa e bacon.
- Acompanha: Pão artesanal da casa e queijo parmesão.
-","\$ 49
-"
-
-TRADICIONAL
-
-\$59 (1p)/\$89 (2p)
-
-Macarrão artesanal da casa, legumes, carne e frango. Preparado
-
-em molho oriental.
-
-CAMARÃO
-
-\$ 74 (1p)/\$ 109 (2p)
-
-Macarrão artesanal da casa, camarões selecionados
-
-e legumes. Preparado em molho oriental.
-
-VEGETARIANO
-
-\$ 49 (1p)/\$ 79 (2p)
-
-Macarrão artesanal da casa e legumes.
- Preparado em molho oriental.
-
-KIDS
-
-PROCURANDO NEMO
-
-\$ 47
-
-Tiras de tilápia empanada, purê de batata.
-
-arroz branco e tomates cereja.
-
-A DAMA E O VAGABUNDO
-
-\$ 46
-
-Fettuccine artesanal ao molho sugo,
- bolonhesa ou alho e óleo.
-
-GALINHA PINTADINHA
-
-\$ 49
-
-Isca de frango grelhado, fritas, arroz branco e tomate cereja.
-
-
---- PAGE 10 ---
-
-vorom
- Extra
-
-LA
-
-alc4.6
-
-ENECERIA MODELO, S. DER. L. DEC.
- MEXICO, D. F. CERVEJA
- PILSEN
-
-
---- PAGE 11 ---
-
-
-PORÇÕES
-
-
-"BOLINHO DE MANDIOCA
-",
-"COM CARNE SECA
-","\$ 55
-"
-"Com mussarela.
-",
-"Acompanha geleia de pimenta da casa (8 unid.)
-",
-"CALABRESA NA CHAPA
- COM CATUPIRY
-","\$ 59
-"
-"Calabresa defumada com toque especial de erva doce,
- cebola, catupiry e pimenta biquinho.
- Acompanha: pão artesanal da casa.
- CAMARÃO
- Camarões selecionados, passado na chapa
- com alho frito e cebolinha..
-",
-,"\$ 89
-"
-,
-"DADINHO DE TAPIOCA
- COM PARMESÃO
-
-
-Acompanha geleia de pimenta da casa (10 unid.)
-","\$ 49
-"
-"FRANGO CROCANTE
- Pedaços de frango selecionados, envolto em uma
- camada crocante com especiarias. Acompanha: fritas.
- FRITAS
- FRITAS ESPECIAL
- Fritas com cheddar, bacon e mussarela.
- ISCA DE TILÁPIA
- Tilápia em tiras, empanadas, com molho da casa.
- MIGNON 4 QUEIJOS NA CHAPA
- Filé mignon em tiras na manteiga e cebola.
- Acompanha: molho quatro queijos e pão artesanal da casa.
-
-
-
-
-
-
-
-
-","\$ 78
-
-
-\$ 39
-
-
-\$ 68
-
-
-\$ 79
-
-
-\$ 89
-"
-
-
-
-"PARMEGIANA APERITIVO
- Filé mignon empanado, coberto com queijo e
- molho artesanal ""para beliscar"". Acompanha: pão artesanal da casa.
-","\$ 79
-"
-"PASTELZINHO DE FEIRA
- Carne ou queijo. Acompanha vinagrete (10 unid.).
-","\$ 49
-"
-"PASTELZINHO DE CAMARÃO
- Camarões, catupiry, mussarela.
- Acompanha vinagrete (10 unid.).
-","\$ 69
-"
-
-4.6
-
-C
-
-A
-
-SOBREMESAS
-
-
-"\$ 23
-
-
-BROWNIE
-"
-"Bolo de chocolate com sorvete de creme
- CREME DE PAPAYA
- de papaya com licor de cassis
- DOCE DE ABÓBORA
- calda e raspas de coco.
- PETIT GATEAU
- Bolinho de chocolate, sorvete de creme e calda de chocolate.
-
-
-\$ 20
-
-
-Creme
-
-
-
-
-\$ 15
-
-
-Com
-
-
-\$ 27
-
-
-"
-
-
-
-"\$ 17
-
-
-PUDIM DE LEITE CONDENSADO
-"
-"Pudim caseiro, com calda de caramelo.
-"
-"\$ 20
-
-
-TORTA HOLANDESA
-"
-"Creme de chocolate branco, ganache de chocolate meio amargo.
-"
-"\$ 17
-
-
-TAÇA DE SORVETE
-"
-"Creme, chocolate ou morango.
-"
-
---- PAGE 12 ---
-
-BEBIDAS
-
-SOFT-DRINK
-
-
-"Refrigerante - lata
-","\$ 11
-"
-"Refrigerante - KS
-","\$9
-"
-"Água mineral - 500 ml
-","\$7
-"
-"Água de Coco
-","\$ 14
-"
-"Citrus
-","\$ 11
-"
-"Tônica
-","\$ 11
-"
-"H20h
-","\$ 13
-"
-"Ice Tea - lata
-","\$ 12
-"
-"Suco-Lata
-","\$ 12
-"
-"Café expresso
-","\$7
-"
-
-SUCOS
-
-
-"Abacaxi
-","\$ 15
-"
-"Abacaxi com hortelã
-","\$ 15
-"
-"Acerola
-","\$ 15
-"
-"Laranja Natural
-","\$ 15
-"
-"Laranja com acerola
-","\$ 15
-"
-"Laranja com morango
-","\$ 15
-"
-"Limão natural
-","\$ 15
-"
-"Maracujá
-","\$ 15
-"
-"Morango
-","\$ 15
-"
-"Uva integral
-","\$ 16
-"
-"Uva integral - jarra
-","\$ 39
-"
-
-CERVEJAS
-
-
-,"GARRAFA
-","LONG NECK
-","BALDE (3 UN.)
-"
-"Heineken
-","\$ 23
-","\$ 14
-","\$ 64
-"
-"Eisenbahm
-","\$ 20
-",,"\$ 55
-"
-"Amstel
-","\$ 20
-",,"\$ 55
-"
-"Original
-","\$ 21
-",,"\$ 58
-"
-
-SODA ITALIANA
-
-
-"Blueberry
-","\$ 19
-"
-"Maça verde
-","\$ 19
-"
-"Frutas vermelhas
-","\$ 19
-"
-"Frutas Vermelhas Zero Açúcar
-","\$ 19
-"
-"Granberry
-","\$ 19
-"
-"Pink Limonade
-","\$ 19
-"
-
---- PAGE 13 ---
-
-APERITIVOS
-
-VINHOS
-
-
-"Amarula
-","\$ 39
-"
-"Cachaças Especiais
-","\$ 22
-"
-"Cachaça da casa - tonel
-","\$9
-"
-"Energético
-","\$ 19
-"
-"Campari
-","\$ 24
-"
-"Saquê
-","\$ 19
-"
-"Tequila Jose Cuervo
-","\$ 39
-"
-"Vodka Smirnoff
-","\$ 29
-"
-"Gim Nacional
-","\$ 29
-"
-"Gim Importado
-","\$ 34
-"
-
-NACIONAL
-
-
-"Vinho Colonial Jarra
-","\$ 59
-"
-"Vinho Colonial-Taça
-","\$ 24
-"
-"Vinho de Mesa - Especial
-","\$ 69
-"
-"Vinho de Mesa-750ml
-","\$ 59
-"
-"Vinho de Mesa - 245ml
-","\$ 39
-"
-"Vinho Rose - Taça
-","\$ 29
-"
-"Vinho Sauvignon Blanc - Taça
-","\$ 29
-"
-
-ARGENTINO
-
-WHISKY
-
-
-"Angelica Zapata
-","\$ 299
-"
-"Cordero con Riel de Lobo
-","\$ 139
-"
-"DV Catena
-","\$ 249
-"
-"La Linda
-","\$ 149
-"
-"Santa Helena Malbec
-","\$ 99
-"
-
-"Ballantines
-","\$ 44
-"
-"Jack Daniels
-","\$ 44
-"
-"Black Label
-","\$ 44
-"
-"Red Label
-","\$ 39
-"
-"White Horse
-","\$ 39
-"
-
-DRINKS
-
-CHILENO
-
-
-"Santa Helena Reservado
-","\$ 99
-"
-"Concha y Toro Reservado
-","\$ 99
-"
-"Gato Negro Reservado
-","\$ 109
-"
-"Tarapaca
-","\$ 119
-"
-"Casileiro del Diablo Reserva
-","\$ 129
-"
-
-"BATIDA ABACAXI
-","\$ 34
-"
-,
-"Abacaxi, vinho e leite condensado.
- BATIDA MARACUJÁ
- Leite condensado, maracujá e vodka.
-","\$ 34
-"
-"CAIPIRINHA
- Limão, cachaça de excelente qualidade.
-","\$ 29
-"
-"CAIPIRINHA SAQUÊ
- Morango ou maracujá.
-","\$ 32
-"
-"CAIPIROSKA SMINORF
- Limão ou morango ou maracujá.
-","\$ 32
-"
-"CAPIRINHA BEER
- Stella Artois, limão, açúcar.
-","\$ 34
-"
-"GIM TROPICAL
- Gim, limão, laranja, Red Bull.
-","\$ 39
-"
-"LAGOA AZUL
- Vodka, curaçau blue, mix de limão, soda limonada.
-","\$ 36
-"
-"MARGARITA
- Tequila prata, licor de laranja, suco de limão, sal.
- МОЛТО
- Rum branco, limão em pedaços, hortelã, água com gás.
-","\$ 38
-
-
-\$ 36
-"
-"SEX ON THE BEACH
- Vodka, licor de pêssego, suco de laranja, grenadine.
-","\$ 37
-"
-"TEQUILA SUNRISE
- Tequila prata, suco de laranja, grenadine.
-","\$ 38
-"
-"SANGRIA JARRA
-
-
-Vinho ou suco de uva integral.
-","\$ 79
-"
-"SANGRIA - TAÇA
-","\$ 36
-"
-
-ESPANHOL
-
-Pata Negra Temparilho
-
-\$ 129
-
-ITALIANO
-
-Lambrusco (espumante)
-
-\$ 99
-
-PORTUGUÊS
-
-
-"Quinta Bons Ventos
-","\$ 109
-"
-"Periquita
-","\$ 139
-"
-"Casal Garcia
-","\$ 139
-"
-"ROLHA
-","\$ 39
-"
-
-DOM FRATELLO
- pizzeria e ristorante
-
-Vinho ou suco de uva integral.
-
-
---- PAGE 14 ---
-
-DOM FRATELLO
-
-pizzeria e ristorante
-`;
+        // Dados dos itens do cardápio formatados exatamente como desejado
+        // Esta lista é baseada nas suas especificações e na transcrição do PDF
+        const menuItemsData = [
+            // PIZZAS FRITAS
+            { name: "BRÓCOLIS", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizza" },
+            { name: "CALABRIA", description: "Molho de tomate fresco, calabresa, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "DONA NONA", description: "Molho de tomate fresco, presunto, ovo, catupiry, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "DUE FORMAGGIO", description: "Molho de tomate fresco, catupiry, tomate, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "GALETINA", description: "Molho de tomate fresco, catupiry, mussarela, frango desfiado, azeitonas e orégano.", category: "Pizza" },
+            { name: "CAMARÃO", description: "Molho de tomate fresco, camarão, cebolinha, cream cheese e mussarela.", category: "Pizza" },
+            { name: "ALCACHOFRA", description: "Molho de tomate fresco, alcachofra, mussarela de búfala e tomate seco.", category: "Pizza" },
+            { name: "PERU", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate e cebola.", category: "Pizza" },
+            { name: "LOMBO", description: "Molho de tomate fresco, mussarela, lombo canadense, champignon, catupiry.", category: "Pizza" },
+            { name: "FRANGOLINO", description: "Molho de tomate fresco, frango, cheddar, milho, mussarela, tomate picado.", category: "Pizza" },
+
+            // ENTRADAS
+            { name: "ANTEPASTO", description: "Queijos, frios, patês, geleias e torradas artesanais. (Alguns itens podem variar conforme disponibilidade).", category: "Entrada" },
+            { name: "BERINJELA AO FORNO", description: "Berinjela ao forno, pimentões vermelho, alho e azeite. Mussarela, provolone e pão artesanal.", category: "Entrada" },
+            { name: "CORNICCIONE FRATELLO", description: "Massa fina, molho de tomate fresco, alho frito, parmesão e azeite.", category: "Entrada" },
+            { name: "CROSTINI", description: "Massa fina e crocante levemente temperada.", category: "Entrada" },
+            { name: "FUNDO DE ALCACHOFRA", description: "Alcachofra, molho 4 queijos gratinado e pão da casa.", category: "Entrada" },
+            { name: "BURRATA AO PESTO", description: "Burrata, tomatinho cereja, pesto de azeitona e manjericão. Acompanha crostines.", category: "Entrada" },
+            { name: "BRUSCHETTA", description: "Pão rústico da casa, queijo, tomate e manjericão.", category: "Entrada" },
+
+            // PIZZAS
+            { name: "CAPRESE", description: "Molho de tomate fresco, mussarela, manjericão, tomate, mussarela de búfala, pesto de azeitona e orégano.", category: "Pizza" },
+            { name: "CINCO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, gorgonzola, parmesão, provolone, azeitonas e orégano.", category: "Pizza" },
+            { name: "GRATINADA", description: "Molho de tomate fresco, generosa porção de catupiry, provolone, azeitonas e orégano.", category: "Pizza" },
+            { name: "GORGONZOLA", description: "Molho de tomate fresco, gorgonzola, palmito, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
+            { name: "MARGUERITA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
+            { name: "MARGUERITA II", description: "Molho de tomate fresco, mussarela de búfala, tomate, parmesão, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
+            { name: "MUSSARELA", description: "Molho de tomate fresco, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
+            { name: "NAPOLITANA", description: "Molho de tomate fresco, mussarela, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "POMODORO", description: "Molho de tomate fresco, mussarela, tomate, parmesão, alho frito, azeitonas e orégano.", category: "Pizza" },
+            { name: "QUEIJO BRIE", description: "Molho de tomate fresco, mussarela, queijo brie, geleia de pimenta, azeitonas e orégano.", category: "Pizza" },
+            { name: "QUEIJO BRIE ESPECIAL", description: "Molho de tomate fresco, mussarela de búfala, queijo brie, cream cheese, rúcula, azeitonas e orégano.", category: "Pizza" },
+            { name: "QUATRO QUEIJOS", description: "Molho de tomate fresco, mussarela, catupiry, provolone, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "DONATELLO", description: "Molho de tomate fresco, mussarela, ovo, cebola, bacon, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "BACON", description: "Molho de tomate fresco, mussarela, bacon, azeitonas e orégano.", category: "Pizza" },
+            { name: "BACON ESPECIAL", description: "Molho de tomate fresco, catupiry, cebola, bacon, tomate picado, azeitonas e orégano.", category: "Pizza" },
+            { name: "BRUNALE", description: "Molho de tomate fresco, lombo canadense, milho, catupiry, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "CATULOMBO", description: "Molho de tomate fresco, lombo canadense, catupiry, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "CAPRICCIO", description: "Molho de tomate fresco, mussarela, tomate, manjericão, presunto parma, azeitonas e orégano.", category: "Pizza" },
+            { name: "DI PARMA", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "PARMA CHIQUE", description: "Molho de tomate fresco, mussarela, presunto parma, rúcula, lascas de parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "LOMBINHO", description: "Molho de tomate fresco, lombo canadense, palmito, mussarela, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "LOMBO ESPECIAL", description: "Molho de tomate fresco, lombo canadense, champignon, bacon, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "PALESTRA ITÁLIA", description: "Molho de tomate fresco, alho poró, cream cheese, presunto parma, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "PEPPERONI", description: "Molho de tomate fresco, mussarela, pepperoni, pimentão vermelho, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "PEPPER BLUE", description: "Molho de tomate fresco, mussarela, pepperoni, gorgonzola, cebola, pimentão vermelho, azeitonas e orégano.", category: "Pizza" },
+            { name: "PEPPERONI ESPECIAL", description: "Molho de tomate fresco, pepperoni, catupiry, parmesão, manjericão, azeitonas e orégano.", category: "Pizza" },
+            { name: "PEITO DE PERU", description: "Molho de tomate fresco, peito de peru, palmito, mussarela, tomate seco, azeitonas e orégano.", category: "Pizza" },
+            { name: "SICILIANA", description: "Molho de tomate fresco, mussarela, champignon refogado, bacon, azeitonas e orégano.", category: "Pizza" },
+            { name: "CARNE SECA", description: "Molho de tomate fresco, carne seca desfiada, ovos, mussarela, palmito, ervilha, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "FILÉ MIGNON", description: "Molho de tomate fresco, filé mignon, mussarela, cebolas com molho especial, cogumelos, tomate cereja, cebolinha, azeitonas e orégano.", category: "Pizza" },
+            { name: "NORDESTINA", description: "Molho de tomate fresco, carne seca desfiada, palmito, ovos, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
+            { name: "ABOBRINHA", description: "Molho de tomate fresco, mussarela, abobrinha, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "ABOBRINHA ESPECIAL", description: "Molho de tomate fresco, mussarela, abobrinha, gorgonzola, parmesão, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "ALCACHOFRA", description: "Molho de tomate fresco, alcachofra, presunto, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "ALCACHOFRINHA", description: "Molho de tomate fresco, alcachofra, tomate seco, mussarela de búfala, azeitonas e orégano.", category: "Pizza" },
+            { name: "ALHO PORÓ", description: "Molho de tomate fresco, mussarela, alho poró refogado, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "BERINJELA", description: "Berinjela marinada, alho, azeite, mussarela, pimentões, tomates picados, azeitonas e orégano.", category: "Pizza" },
+            { name: "BRÓCOLIS", description: "Molho de tomate fresco, brócolis, mussarela, alho frito, azeitonas e orégano.", category: "Pizza" },
+            { name: "BRÓCOLIS ESPECIAL", description: "Molho de tomate fresco, brócolis, catupiry, bacon, alho frito, azeitonas e orégano.", category: "Pizza" },
+            { name: "CEREJINHA", description: "Molho de tomate fresco, rúcula, alcachofra, mussarela, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "ESCAROLA", description: "Molho de tomate fresco, escarola refogada, mussarela, bacon, azeitonas e orégano.", category: "Pizza" },
+            { name: "ESCAROLA ESPECIAL", description: "Molho de tomate fresco, escarola refogada, catupiry, gorgonzola, tomate seco, alho frito, azeitonas e orégano.", category: "Pizza" },
+            { name: "LEVINHA", description: "Molho de tomate fresco, brócolis, palmito, mussarela de búfala, tomate cereja, azeitonas e orégano.", category: "Pizza" },
+            { name: "PALMITO", description: "Molho de tomate fresco, palmito, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "PALMITO ESPECIAL", description: "Molho de tomate fresco, palmito, mussarela, catupiry, tomate seco, tomate, azeitonas e orégano.", category: "Pizza" },
+            { name: "RÚCULA", description: "Molho de tomate fresco, mussarela de búfala, rúcula, tomate seco, azeitonas e orégano.", category: "Pizza" },
+            { name: "EL GRINGO", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, mussarela, tomate picado, azeitonas e orégano.", category: "Pizza" },
+            { name: "BAURU", description: "Molho de tomate fresco, presunto, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
+            { name: "LUSITANA", description: "Molho de tomate fresco, presunto, ervilha, ovos, cebola, palmito, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "PORTUGUESA", description: "Molho de tomate fresco, presunto, cebola, ovos, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "SUPREMA", description: "Molho de tomate fresco, presunto, cebola, catupiry, batata palha, azeitonas e orégano.", category: "Pizza" },
+            { name: "CAIPIRA", description: "Molho de tomate fresco, frango desfiado, mussarela, milho, azeitonas e orégano.", category: "Pizza" },
+            { name: "CATUFRANGO", description: "Molho de tomate fresco, frango desfiado, catupiry, azeitonas e orégano.", category: "Pizza" },
+            { name: "GALINHÃO", description: "Molho de tomate fresco, frango desfiado, cheddar, bacon, batata palha, azeitonas e orégano.", category: "Pizza" },
+            { name: "POLLO", description: "Molho de tomate fresco, frango desfiado, cream cheese, tomate picado, azeitonas e orégano.", category: "Pizza" },
+            { name: "BAIANA", description: "Molho de tomate fresco, calabresa, bacon, mussarela, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "BAIANA À MODA", description: "Molho de tomate fresco, calabresa, bacon, ovos, cebola, pimenta fresca, azeitonas e orégano.", category: "Pizza" },
+            { name: "CALABRESA", description: "Molho de tomate fresco, calabresa, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "CATUBRESA", description: "Molho de tomate fresco, calabresa, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
+            { name: "CHILENA", description: "Molho de tomate fresco, mussarela, calabresa, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "TOSCANA", description: "Molho de tomate fresco, calabresa moída, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "TOSCANA ESPECIAL", description: "Molho de tomate fresco, calabresa moída, mussarela, gorgonzola, cebola, pimenta biquinho, azeitonas e orégano.", category: "Pizza" },
+            { name: "ALICHE", description: "Molho de tomate fresco, filé de aliche importado, tomate, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "ATUM", description: "Molho de tomate fresco, atum, cebola, azeitonas e orégano.", category: "Pizza" },
+            { name: "ATUM II", description: "Molho de tomate fresco, atum, cebola, mussarela, tomate, azeitonas e orégano.", category: "Pizza" },
+            { name: "ATUM À MODA", description: "Molho de tomate fresco, atum, cebola, palmito, milho, azeitonas e orégano.", category: "Pizza" },
+            { name: "ATUM ESPECIAL", description: "Molho de tomate fresco, atum sólido, cebola, catupiry, azeitonas e orégano.", category: "Pizza" },
+            { name: "CAMARÃO", description: "Molho de tomate fresco, camarões frescos e selecionados, mussarela, cebolinha fresca, azeitonas e orégano.", category: "Pizza" },
+            { name: "CAMARÃO ESPECIAL", description: "Molho de tomate fresco, camarão, cream cheese philadelphia, cebolinha fresca, azeitonas e orégano.", category: "Pizza" },
+            { name: "À MODA DA CASA", description: "Molho de tomate fresco, mussarela, calabresa moída, catupiry, parmesão ralado, tomate, manjericão fresco, azeitonas e orégano.", category: "Pizza" },
+            { name: "MODA DA GABY", description: "Molho de tomate fresco, frango desfiado, palmito, milho, catupiry, provolone, azeitonas e orégano.", category: "Pizza" },
+            { name: "À MODA DO CESINHA", description: "Molho de tomate fresco, calabresa moída, catupiry, frango, milho, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "À MODA DO MARCINHO", description: "Molho de tomate fresco, calabresa, catupiry, mussarela, parmesão, azeitonas e orégano.", category: "Pizza" },
+            { name: "MODA DO PATRÍCIO", description: "Molho de tomate fresco, presunto, ovos, palmito, bacon, catupiry, tomate picado, azeitonas e orégano.", category: "Pizza" },
+            { name: "À MODA DO PIZZAIOLO", description: "Molho de tomate fresco, calabresa, palmito, cebola, mussarela, azeitonas e orégano.", category: "Pizza" },
+            { name: "À MODA DO THIAGO", description: "Molho de tomate fresco, peito de peru defumado, cream cheese, cebola, mussarela, azeitonas e orégano.", category: "Pizza" },
+
+            // PRATOS E MASSAS
+            { name: "CAMARÃO INTERNACIONAL", description: "Camarões servidos sobre cremoso arroz com ervilhas e presunto, envolvido com molho branco, gratinado com queijos e acompanhado de batata palha.", category: "Pratos" },
+            { name: "RISOTO DE CAMARÃO COM ALHO PORÓ", description: "Arroz arbóreo especial e camarões selecionados com alho poró.", category: "Massas" },
+            { name: "RISOTO DE BRIE COM DAMASCO", description: "Arroz arbóreo especial com queijo brie e damasco.", category: "Massas" },
+            { name: "RISOTO DE GORGONZOLA COM PERA", description: "Arroz arbóreo especial com fatias de pera assada, finalizado com queijo gorgonzola e nozes.", category: "Massas" },
+            { name: "RISOTO DE RÚCULA E TOMATE SECO", description: "Arroz arbóreo preparado em caldo de legumes caseiro, rúcula fresca e tomate seco.", category: "Massas" },
+            { name: "FETTUCCINE COM CAMARÃO", description: "Massa artesanal da casa, camarões selecionados ao molho branco.", category: "Massas" },
+            { name: "TALHARIM MOLHO SUGO", description: "Massa artesanal da casa, com filé de frango grelhado.", category: "Massas" },
+            { name: "MOLHO 4 QUEIJOS", description: "Massa artesanal da casa, com medalhão de filé mignon.", category: "Massas" },
+            { name: "RAVIOLI 4 QUEIJOS", description: "Mussarela, provolone, parmesão e gorgonzola.", category: "Massas" },
+            { name: "RAVIOLI CAPRESE", description: "Queijo, tomate seco e manjericão.", category: "Massas" },
+            { name: "SALMÃO AO MOLHO DE ERVAS", description: "Salmão gratinado regado ao molho especial, acompanhado de arroz com brócolis e purê de batata-baroa.", category: "Pratos" },
+            { name: "SALMÃO AO MOLHO DE MARACUJÁ", description: "Arroz branco, folhas verdes, purê de batata ou fritas.", category: "Pratos" },
+            { name: "SALMÃO NA CHAPA", description: "Salmão com legumes na chapa, arroz branco e purê de batata.", category: "Pratos" },
+            { name: "FILÉ DE TILÁPIA", description: "Filé de tilápia empanado, purê de batata e arroz com brócolis.", category: "Pratos" },
+            { name: "MEDALHÃO MIGNON", description: "Medalhão filé mignon ao molho madeira, purê de mandioquinha e arroz branco.", category: "Pratos" },
+            { name: "FILÉ PARMEGIANA", description: "Filé mignon, molho artesanal da casa, mussarela, finalizado no forno à lenha. Acompanha arroz e fritas.", category: "Pratos" },
+            { name: "FILÉ MIGNON EM TIRAS", description: "Filé mignon em tiras com cebola, salteado na manteiga. Acompanha: Arroz com brócolis, fritas e molho 4 queijos.", category: "Pratos" },
+            { name: "STROGONOFF", description: "Filé mignon ou frango preparado em um delicioso molho, com champignon. Acompanha: arroz e batata palha.", category: "Pratos" },
+            { name: "CREME DE MANDIOQUINHA COM ALHO PORÓ", description: "Acompanha: Pão artesanal da casa e queijo parmesão.", category: "Pratos" },
+            { name: "CREME DE MANDIOQUINHA COM FRANGO DESFIADO", description: "Acompanha: Pão artesanal da casa e queijo parmesão.", category: "Pratos" },
+            { name: "CALDO VERDE", description: "Creme de batata, couve, calabresa e bacon. Acompanha: Pão artesanal da casa e queijo parmesão.", category: "Pratos" },
+            { name: "YAKISSOBA TRADICIONAL", description: "Macarrão artesanal da casa, legumes, carne e frango. Preparado em molho oriental.", category: "Pratos" },
+            { name: "YAKISSOBA CAMARÃO", description: "Macarrão artesanal da casa, camarões selecionados e legumes. Preparado em molho oriental.", category: "Pratos" },
+            { name: "YAKISSOBA VEGETARIANO", description: "Macarrão artesanal da casa e legumes. Preparado em molho oriental.", category: "Pratos" },
+            { name: "PROCURANDO NEMO", description: "Tiras de tilápia empanada, purê de batata, arroz branco e tomates cereja.", category: "Pratos" },
+            { name: "A DAMA E O VAGABUNDO", description: "Fettuccine artesanal ao molho sugo, bolonhesa ou alho e óleo.", category: "Pratos" },
+            { name: "GALINHA PINTADINHA", description: "Isca de frango grelhado, fritas, arroz branco e tomate cereja.", category: "Pratos" },
+
+            // PORÇÕES
+            { name: "BOLINHO DE MANDIOCA COM CARNE SECA", description: "Com mussarela. Acompanha geleia de pimenta da casa (8 unid.).", category: "Porções" },
+            { name: "CALABRESA NA CHAPA COM CATUPIRY", description: "Calabresa defumada com toque especial de erva doce, cebola, catupiry e pimenta biquinho. Acompanha: pão artesanal da casa.", category: "Porções" },
+            { name: "CAMARÃO", description: "Camarões selecionados, passado na chapa com alho frito e cebolinha.", category: "Porções" },
+            { name: "DADINHO DE TAPIOCA COM PARMESÃO", description: "Acompanha geleia de pimenta da casa (10 unid.).", category: "Porções" },
+            { name: "FRANGO CROCANTE", description: "Pedaços de frango selecionados, envolto em uma camada crocante com especiarias. Acompanha: fritas.", category: "Porções" },
+            { name: "FRITAS", description: "Porção de batatas fritas crocantes.", category: "Porções" }, // Added a default description as it was missing
+            { name: "FRITAS ESPECIAL", description: "Fritas com cheddar, bacon e mussarela.", category: "Porções" },
+            { name: "ISCA DE TILÁPIA", description: "Tilápia em tiras, empanadas, com molho da casa.", category: "Porções" },
+            { name: "MIGNON 4 QUEIJOS NA CHAPA", description: "Filé mignon em tiras na manteiga e cebola. Acompanha: molho quatro queijos e pão artesanal da casa.", category: "Porções" },
+            { name: "PARMEGIANA APERITIVO", description: "Filé mignon empanado, coberto com queijo e molho artesanal 'para beliscar'. Acompanha: pão artesanal da casa.", category: "Porções" },
+            { name: "PASTELZINHO DE FEIRA", description: "Carne ou queijo. Acompanha vinagrete (10 unid.).", category: "Porções" },
+            { name: "PASTELZINHO DE CAMARÃO", description: "Camarões, catupiry, mussarela. Acompanha vinagrete (10 unid.).", category: "Porções" }
+        ];
 
         const suggestMenuItemBtn = document.getElementById('suggestMenuItemBtn');
         const menuItemRecommendationDiv = document.getElementById('menuItemRecommendation');
         const loadingMenuItem = document.getElementById('loadingMenuItem');
 
-        // Pré-processa os itens do cardápio quando o script é carregado
-        const parsedMenuItems = parseMenuFromText(pdfTextContent);
-        console.log("Itens do Cardápio Processados:", parsedMenuItems); // Para depuração
-
-        // Filtra os itens do cardápio para incluir apenas pizzas, pratos, massas e porções
-        const filteredMenuItems = parsedMenuItems.filter(item =>
-            ['Pizzas', 'Pratos', 'Massas', 'Porções'].includes(item.category)
+        // Filtra os itens do cardápio para incluir apenas as categorias desejadas
+        const filteredMenuItems = menuItemsData.filter(item =>
+            ['Pizzas', 'Pratos', 'Massas', 'Porções', 'Entradas'].includes(item.category)
         );
-        console.log("Itens do Cardápio Filtrados:", filteredMenuItems); // Para depuração
-
 
         suggestMenuItemBtn.addEventListener('click', () => {
             if (filteredMenuItems.length === 0) {
-                menuItemRecommendationDiv.innerHTML = '<p class="text-red-600">Não foi possível encontrar itens de pizzas, pratos, massas ou porções para sugerir no cardápio.</p>';
+                menuItemRecommendationDiv.innerHTML = '<p class="text-red-600">Não foi possível encontrar itens para sugerir nas categorias selecionadas.</p>';
                 return;
             }
 
             loadingMenuItem.classList.remove('hidden');
             menuItemRecommendationDiv.innerHTML = ''; // Limpa a sugestão anterior
 
-            // Simula um atraso para "carregamento"
+            // Simula um atraso para "carregamento" para uma melhor experiência do usuário
             setTimeout(() => {
                 const randomIndex = Math.floor(Math.random() * filteredMenuItems.length);
                 const suggestedItem = filteredMenuItems[randomIndex];
 
+                // Formata a saída exatamente como você solicitou
                 let suggestionHtml = `<p class="font-semibold text-dom-dark-blue">Nossa sugestão para você:</p>`;
                 suggestionHtml += `<p class="text-lg font-bold">${suggestedItem.name}</p>`;
                 if (suggestedItem.description) {
                     suggestionHtml += `<p class="text-gray-700 mt-2">${suggestedItem.description}</p>`;
                 }
-                if (suggestedItem.section && suggestedItem.section !== suggestedItem.name) { // Evita duplicar o nome se a seção for igual
-                    suggestionHtml += `<p class="text-sm text-gray-500 mt-1">Categoria: ${suggestedItem.category || suggestedItem.section}</p>`;
-                }
+                suggestionHtml += `<p class="text-sm text-gray-500 mt-1">Categoria: ${suggestedItem.category}</p>`;
 
                 menuItemRecommendationDiv.innerHTML = suggestionHtml;
                 loadingMenuItem.classList.add('hidden');
