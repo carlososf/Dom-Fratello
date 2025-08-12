@@ -76,7 +76,7 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-4">
             <!-- Espaço para o Logotipo - Visível em todas as telas, mas centralizado em mobile -->
             <img src="dom fratello.png" alt="Dom Fratello Logo" class="h-10 md:h-12 mb-2 md:mb-0 mx-auto md:mx-0">
-
+    
             <!-- Informações de Contato e Botões -->
             <!-- Esconde em telas pequenas e exibe em telas médias para cima -->
             <div class="hidden md:flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
@@ -105,28 +105,31 @@
                     Ver Cardápio
                 </a>
             </div>
-
+    
             <!-- Botões e informações para mobile - visíveis apenas em telas pequenas -->
             <div class="flex md:hidden flex-col items-center w-full space-y-2 mt-2">
-                <span class="flex items-center text-xs text-dom-claro">
-                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Rua Casuarinas, 164 - VGP, SP
-                </span>
-                <span class="flex items-center text-xs text-dom-claro">
-                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 004.978 4.978l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                    </svg>
-                    (11) 4158-1318
-                </span>
-                <div class="flex space-x-2 mt-2">
+                <!-- Informações de contato em linha para o celular -->
+                <div class="flex justify-center space-x-4 text-xs">
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                       Rua Casuarinas 164, Floresta, VGP
+                    </span>
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 004.978 4.978l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                        (11) 4158-1318
+                    </span>
+                </div>
+                <div class="flex justify-center space-x-2 mt-2">
                     <a href="https://api.whatsapp.com/send/?phone=5511956981231&text&type=phone_number&app_absent=0" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
                         <img src="whatsapp.png" alt="WhatsApp Icon" class="inline-block w-4 h-4 mr-1">
                         WhatsApp
                     </a>
                     <a href="https://www.ifood.com.br/delivery/vargem-grande-paulista-sp/dom-fratello-pizzaria--restaurante-jardim-floresta/a80ad78d-c973-4079-9353-b38ccee9f5da" target="_blank" class="bg-ifood-red hover:bg-red-600 text-white font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
-                        <img src="icone-ifood.png"Logo do iFood" class="inline-block w-4 h-4 mr-1">
+                        <img src="icone-ifood.png" alt="Logo do iFood" class="inline-block w-4 h-4 mr-1">
                         iFood
                     </a>
                     <a href="Cardapio-2025-02-novo.pdf" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-1 px-3 text-xs rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
@@ -136,13 +139,14 @@
             </div>
         </div>
     </header>
+    
 
     <main>
         <!-- Hero Section -->
-        <section class="relative h-screen bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('fundo dom fratello.png');">
+        <section class="relative h-[75vh] md:h-screen bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('fundo dom fratello.png');">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="z-10 text-dom-claro p-8 rounded-lg fade-in">
-                <h2 class="text-6xl md:text-8xl font-bold mb-4 leading-tight scale-in">Tradição e sabor,<br>do nosso forno para sua mesa.</h2>
+                <h2 class="text-2xl md:text-9xl font-bold mb-4 leading-tight scale-in">Tradição e sabor,<br>do nosso forno para sua mesa.</h2>
                 <a href="https://api.whatsapp.com/send/?phone=5511956981231&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20uma%20reserva!&type=phone_number&app_absent=0" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-120 text-lg mt-8 inline-block">Realizar Reserva</a>
 
             </div>
@@ -359,10 +363,10 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
                 <h2 class="text-4xl font-bold text-dom-dourado mb-8">Planeje Sua Visita ou Peça Online!</h2>
                 <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
                     <a href="https://api.whatsapp.com/send/?phone=5511956981231&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20uma%20reserva!&type=phone_number&app_absent=0" target="_blank" class="bg-dom-dourado hover:bg-yellow-600 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
-                        Fazer Reserva via WhatsApp
+                        Reservas e Pedidos via WhatsApp
                     </a>
-                    <a href="https://pedido.anota.ai/loja/dom-fratello-pizza-cia?f=msa" target="_blank" class="bg-white hover:bg-gray-200 text-dom-dark-blue font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
-                        Pedir Online (via AnotaAi)
+                    <a href="https://www.ifood.com.br/delivery/vargem-grande-paulista-sp/dom-fratello-pizzaria--restaurante-jardim-floresta/a80ad78d-c973-4079-9353-b38ccee9f5da" target="_blank" class="bg-ifood-red hover:bg-red-600 text-white font-semibold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-lg">
+                        Pedir via iFood
                     </a>
                 </div>
             </div>
@@ -396,7 +400,7 @@ Desde o início, a Dom Fratello sabia o que precisa oferecer: pizzas de qualidad
 
             <!-- Redes Sociais e Outros Links -->
             <div>
-                <h3 class="text-xl font-bold text-dom-dourado mb-4">Conecte-se</h3>
+                <h3 class="text-xl font-bold text-dom-dourado mb-4">Nossas Redes</h3>
                 <div class="flex space-x-4 mb-4">
                     <a href="https://www.instagram.com/domfratello/" target="_blank" class="hover:text-dom-dourado transform hover:scale-125 transition duration-300 ease-in-out">
                         <!-- Ícone do Instagram em PNG -->
